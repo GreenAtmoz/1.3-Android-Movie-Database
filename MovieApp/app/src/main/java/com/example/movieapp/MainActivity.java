@@ -1,15 +1,17 @@
 package com.example.movieapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.Domain.MovieElements;
 
-public class MainActivity extends AppCompatActivity{
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public ImageView imageView2;
     public Button all;
     public Button date;
@@ -70,4 +72,8 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    @Override
+    public void processFinish(ArrayList<MovieElements> output) {
+        //zooi voor recyclerview, en adapter
+    }
 }
