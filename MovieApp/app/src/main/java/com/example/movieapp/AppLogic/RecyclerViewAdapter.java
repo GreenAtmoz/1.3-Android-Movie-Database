@@ -1,9 +1,11 @@
-package com.example.movieapp;
+package com.example.movieapp.AppLogic;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.movieapp.Movie;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
