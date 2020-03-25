@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Movie App</string>
+    <string name="date">DATE</string>
+    <string name="rating">Rating</string>
+    <string name="expected">Expected</string>
+    <string name="all">All</string>
 </resources>
