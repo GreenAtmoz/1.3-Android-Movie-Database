@@ -22,7 +22,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:paddingLeft="3"
+            android:paddingLeft="3dp"
             android:text="hele hoop text"
             android:textColor="#FFFFFF" />
 
@@ -30,7 +30,7 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="3"
+            android:paddingLeft="3dp"
             android:text="2020"
             android:textColor="#A8A8A8"
             android:textSize="10sp" />
