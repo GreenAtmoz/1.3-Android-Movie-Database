@@ -4,8 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.movieapp.Movie;
+import com.example.movieapp.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,12 +30,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
-        return null;
+        view = mInflater.inflate(R.layout.cardview_movie,parent,false);
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        //TODO omzetten naar online api
+        holder.movieTitle.setText(mdata.get(position).getTitle());
+        holder.img_Cover.setImageResource(mdata.get(position).getThumbnail());
+        holder.releasedate.setText(mdata.get(position).getYear());
     }
 
     @Override
@@ -41,8 +48,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
+
+        TextView movieTitle;
+        ImageView img_Cover;
+        TextView releasedate;
+
         public MyViewHolder(View itemView) {
             super(itemView);
+            movieTitle = (TextView) itemView.findViewById(R.id.MovieTitle);
+            img_Cover = (ImageView) itemView.findViewById(R.id.MovieCover);
+            releasedate = (TextView) itemView.findViewById(R.id.ReleaseDate);
         }
+
     }
 }
