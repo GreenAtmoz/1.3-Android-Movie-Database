@@ -8,7 +8,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class NetworkUtils {
-    private static final String mString_url = "place json string here";
+    private static final String mString_url = "https://api.themoviedb.org/3/movie/popular?api_key=018bccaff77c7e87b7a1ba9af79aed2c&language=en-US&page=1";
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
 
