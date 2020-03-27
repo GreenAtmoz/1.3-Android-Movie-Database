@@ -1,5 +1,7 @@
 package com.example.movieapp.DataStorrage;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -33,12 +35,14 @@ public class NetworkUtils {
     }
 
     public static URL buildUrl(){
+        Log.d("NetworkUtils", "buildUrl: ");
         URL mUrl = null;
         try {
             mUrl = new URL(mString_url);
         }catch (MalformedURLException e){
             e.printStackTrace();
         }
+        Log.d("NetworkUrl", "buildUrl: " + mUrl);
         return mUrl;
     }
 }
