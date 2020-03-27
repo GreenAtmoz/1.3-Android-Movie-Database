@@ -38,7 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.movieTitle.setText(movieElements.get(position).getFilmTitel());
         Picasso.get()
-                .load(NetworkUtils.buildImageUrlW200(movieElements.get(position).getImageUrl()))
+                .load(movieElements.get(position).getImageUrlW200())
                 .into(holder.img_Cover);
         holder.releasedate.setText(movieElements.get(position).getDate().substring(0,4));
     }
