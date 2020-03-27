@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -26,14 +25,11 @@ public class DataProcessing extends AsyncTask<String, Void, ArrayList<MovieEleme
         Log.d("Dataprocessing", "doInBackground");
         try {
             String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(NetworkUtils.buildUrl());
-//            String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(new URL("https://api.themoviedb.org/3/movie/popular?api_key=018bccaff77c7e87b7a1ba9af79aed2c&language=en-US&page=1"));
             JSONObject object = new JSONObject(jsonResponseString);
             JSONArray results = object.getJSONArray("results");
 
             for (int i = 0; i < results.length(); i++) {
                 JSONObject result = results.getJSONObject(i);
-//                JSONObject attributes = decorativeElementObject.getJSONObject("attributes");
-
                 MovieElements element = new MovieElements();
                 element.setFilmTitel(result.getString("title"));
                 Log.d(TAG, "doInBackground: title: " + element.getFilmTitel());
@@ -44,7 +40,6 @@ public class DataProcessing extends AsyncTask<String, Void, ArrayList<MovieEleme
                 element.setId(result.getInt("id"));
                 //element.setTrailerLink(attributes.getString(""));
                 movieElements.add(element);
-
             }
         } catch (IOException e) {
             e.printStackTrace();

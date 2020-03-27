@@ -49,24 +49,42 @@ public class NetworkUtils {
         return mUrl;
     }
 
+<<<<<<< HEAD
+    public static String buildImageUrlW500(String inputPath) {
+        Log.d("NetworkUtils", "buildImageUrlW500: ");
+        String mUrl = null;
+        try {
+            mUrl = new String(mString_pictureUrlW500 + inputPath);
+        } catch (Exception e) {
+=======
     public static URL buildImageUrlW500(String inputPath) {
         Log.d("NetworkUtils", "buildImageUrlW500: ");
         URL mUrl = null;
         try {
             mUrl = new URL(mString_pictureUrlW500 + inputPath);
         } catch (MalformedURLException e) {
+>>>>>>> Branch-Rik
             e.printStackTrace();
         }
         Log.d("NetworkUrl", "buildImageUrlW500: " + mUrl);
         return mUrl;
     }
 
+<<<<<<< HEAD
+    public static String buildImageUrlW200(String inputPath) {
+        Log.d("NetworkUtils", "buildImageUrlW200: ");
+        String mUrl = null;
+        try {
+            mUrl = new String(mString_pictureUrlW200 + inputPath);
+        } catch (Exception e) {
+=======
     public static URL buildImageUrlW200(String inputPath) {
         Log.d("NetworkUtils", "buildImageUrlW200: ");
         URL mUrl = null;
         try {
             mUrl = new URL(mString_pictureUrlW200 + inputPath);
         } catch (MalformedURLException e) {
+>>>>>>> Branch-Rik
             e.printStackTrace();
         }
         Log.d("NetworkUrl", "buildImageUrlW200: " + mUrl);
