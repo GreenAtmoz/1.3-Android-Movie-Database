@@ -59,8 +59,8 @@ public class NetworkUtils {
         }
         Log.d("NetworkUrl", "buildImageUrlW500: " + mUrl);
         return mUrl;
-        }
-        
+    }
+
     public static String buildImageUrlW200(String inputPath) {
         Log.d("NetworkUtils", "buildImageUrlW200: ");
         String mUrl = null;
@@ -71,9 +71,8 @@ public class NetworkUtils {
         }
         Log.d("NetworkUrl", "buildImageUrlW200: " + mUrl);
         return mUrl;
-        }
-
     }
+
 }
 
 
