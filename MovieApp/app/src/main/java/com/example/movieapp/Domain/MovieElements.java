@@ -70,4 +70,6 @@ public class MovieElements implements Serializable {
     public String getTrailerLink() {
         return trailerLink;
     }
+
+
 }

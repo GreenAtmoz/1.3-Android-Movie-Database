@@ -6,11 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,10 +38,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.movieTitle.setText(movieElements.get(position).getFilmTitel());
         Picasso.get()
-                //.load(movieElements.get(position).getImageUrl())
-                .load("D:\\Pictures\\Pictures\\Other Pictures\\Croissant Man (cut version).png")
+                .load(NetworkUtils.buildImageUrlW200(movieElements.get(position).getImageUrl()))
                 .into(holder.img_Cover);
-        //holder.img_Cover.setImageResource(movieElements.get(position).getThumbnail());
         holder.releasedate.setText(movieElements.get(position).getDate().substring(0,4));
     }
 
@@ -53,7 +50,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
         TextView movieTitle;
         ImageView img_Cover;
         TextView releasedate;
