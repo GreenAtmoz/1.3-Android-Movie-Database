@@ -2,14 +2,10 @@ package com.example.movieapp.DataStorrage;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.example.movieapp.Domain.MovieElements;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.util.ArrayList;
-
 import static android.content.ContentValues.TAG;
 
 public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
@@ -28,7 +24,7 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
         try {
             int page = 0;
             int counter = 0;
-            for (int j = 0; j < 500; j++) {
+            for (int j = 0; j < 20; j++) {
                 page++;
                 String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(NetworkUtils.buildPopularUrlString(apiKey,page));
                 JSONObject object = new JSONObject(jsonResponseString);
@@ -46,7 +42,6 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
                     element.setId(result.getInt("id"));
                     //element.setTrailerLink(attributes.getString(""));
                     movieElements.add(element);
-//                    Log.e("PopularDataProcessing","doInBackground: " + i, new Exception() );
                     counter++;
                     Log.d(TAG, "doInBackground: " + counter);
             }
