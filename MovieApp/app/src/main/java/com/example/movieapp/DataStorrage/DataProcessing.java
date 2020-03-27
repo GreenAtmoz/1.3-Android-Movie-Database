@@ -57,6 +57,7 @@ public class DataProcessing extends AsyncTask<String, Void, ArrayList<MovieEleme
     @Override
     protected void onPostExecute(ArrayList<MovieElements> decorativeElements) {
         asyncResponse.processFinish(decorativeElements);
+        Log.d(TAG, "onPostExecute: " + movieElements);
     }
 
     public ArrayList<MovieElements> getElements() {

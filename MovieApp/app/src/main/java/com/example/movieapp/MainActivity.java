@@ -86,14 +86,16 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             }
         });
 
-        RecyclerView myrv = (RecyclerView) findViewById(R.id.recycleview);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, movieElements);
-        myrv.setLayoutManager(new GridLayoutManager(this,3));
-        myrv.setAdapter(myAdapter);
+
     }
 
     @Override
     public void processFinish(ArrayList<MovieElements> output) {
+        Log.d("MainActivity", "processFinish: is called");
         movieElements = output;
+        RecyclerView myrv = (RecyclerView) findViewById(R.id.recycleview);
+        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, movieElements);
+        myrv.setLayoutManager(new GridLayoutManager(this,3));
+        myrv.setAdapter(myAdapter);
     }
 }
