@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,11 +13,10 @@ import android.widget.ImageView;
 
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
-import com.example.movieapp.DataStorrage.DataProcessing;
+import com.example.movieapp.DataStorrage.PopularDataProcessing;
 import com.example.movieapp.Domain.MovieElements;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public ImageView imageView2;
@@ -37,9 +35,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         imageView2.setImageResource(R.drawable.mainmenucover);
 
         movieElements = new ArrayList<>();
-        DataProcessing dataProcessing = new DataProcessing(movieElements);
-        dataProcessing.asyncResponse = this;
-        dataProcessing.execute();
+        PopularDataProcessing popularDataProcessing = new PopularDataProcessing(movieElements);
+        popularDataProcessing.asyncResponse = this;
+        popularDataProcessing.execute();
 
         all = (Button) findViewById(R.id.all);
         all.setTextColor(Color.parseColor("#ffa500"));
