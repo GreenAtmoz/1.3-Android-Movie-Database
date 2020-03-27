@@ -10,9 +10,9 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class NetworkUtils {
-    private static final String mString_url = "https://api.themoviedb.org/3/movie/popular?api_key=018bccaff77c7e87b7a1ba9af79aed2c&language=en-US&page=1";
     private static final String mString_pictureUrlW500 = "https://image.tmdb.org/t/p/w500";
     private static final String mString_pictureUrlW200 = "https://image.tmdb.org/t/p/w200";
+    private static final String language = "&language=en-US";
 
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
@@ -37,7 +37,7 @@ public class NetworkUtils {
         }
     }
 
-    public static URL buildUrl() {
+    public static URL buildUrl(String mString_url) {
         Log.d("NetworkUtils", "buildUrl: ");
         URL mUrl = null;
         try {
@@ -71,6 +71,14 @@ public class NetworkUtils {
         }
         Log.d("NetworkUrl", "buildImageUrlW200: " + mUrl);
         return mUrl;
+    }
+
+    public static URL buildPopularUrlString(String ApiKey, int page) throws Exception{
+        String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
+        String pageAddon = "&page=";
+        URL output = new URL(base + ApiKey + language + pageAddon + page);
+        Log.d("NetworkUtils", "buildPopularUrlString: " + output);
+        return output;
     }
 
 }

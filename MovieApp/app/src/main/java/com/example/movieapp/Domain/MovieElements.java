@@ -8,7 +8,8 @@ public class MovieElements implements Serializable {
     private String description;
     private int rating;
     private String trailerLink;
-    private String imageUrl;
+    private String imageUrlW200;
+    private String imageUrlW500;
     private String date;
     private int id;
 
@@ -29,14 +30,6 @@ public class MovieElements implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public void setFilmTitel(String filmTitel) {
@@ -71,5 +64,19 @@ public class MovieElements implements Serializable {
         return trailerLink;
     }
 
+    public String getImageUrlW200() {
+        return imageUrlW200;
+    }
 
+    public void setImageUrlW200(String imageUrlW200) {
+        this.imageUrlW200 = imageUrlW200;
+    }
+
+    public String getImageUrlW500() {
+        return imageUrlW500;
+    }
+
+    public void setImageUrlW500(String imageUrlW500) {
+        this.imageUrlW500 = imageUrlW500;
+    }
 }
