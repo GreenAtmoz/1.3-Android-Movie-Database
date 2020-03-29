@@ -6,24 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.movieapp.Movie;
+import com.example.movieapp.DataStorrage.NetworkUtils;
+import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
-
+import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Movie> mdata;
+    private ArrayList<MovieElements> movieElements;
 
-    public RecyclerViewAdapter(Context mContext, List<Movie> mdata) {
+    public RecyclerViewAdapter(Context mContext, ArrayList<MovieElements> movieElements) {
         this.mContext = mContext;
-        this.mdata = mdata;
+        this.movieElements = movieElements;
     }
 
     @NonNull
@@ -37,26 +37,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        //TODO omzetten naar online api
-        holder.movieTitle.setText(mdata.get(position).getTitle());
-        holder.img_Cover.setImageResource(mdata.get(position).getThumbnail());
-        holder.releasedate.setText(mdata.get(position).getYear());
-
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        holder.movieTitle.setText(movieElements.get(position).getFilmTitel());
+        Picasso.get()
+                .load(movieElements.get(position).getImageUrlW200())
+                .into(holder.img_Cover);
+        holder.releasedate.setText(movieElements.get(position).getDate().substring(0,4));
     }
+
 
     @Override
     public int getItemCount() {
-        return mdata.size();
+        return movieElements.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
         TextView movieTitle;
         ImageView img_Cover;
         TextView releasedate;
@@ -69,6 +63,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             releasedate = (TextView) itemView.findViewById(R.id.ReleaseDate);
             cardView = (CardView) itemView.findViewById(R.id.cardview);
         }
-
     }
 }

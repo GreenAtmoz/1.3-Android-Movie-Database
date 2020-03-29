@@ -6,16 +6,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.PopularDataProcessing;
 import com.example.movieapp.Domain.MovieElements;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public ImageView imageView2;
@@ -23,15 +24,20 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public Button date;
     public Button rating;
     public Button expected;
-    List<Movie> movies;
+    private ArrayList<MovieElements> movieElements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Mainactivity","oncreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView2.setImageResource(R.drawable.mainmenucover);
 
+        movieElements = new ArrayList<>();
+        PopularDataProcessing popularDataProcessing = new PopularDataProcessing(movieElements);
+        popularDataProcessing.asyncResponse = this;
+        popularDataProcessing.execute();
 
         all = (Button) findViewById(R.id.all);
         all.setTextColor(Color.parseColor("#ffa500"));
@@ -77,38 +83,17 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 expected.setTextColor(Color.parseColor("#ffa500"));
             }
         });
-        movies = new ArrayList<>();
-        movies.add(new Movie("Battlefield Earth","2020",R.drawable.dave));
-        movies.add(new Movie("john wick","2003",R.drawable.cover2));
-        movies.add(new Movie("john wick 2","2009",R.drawable.cover1));
-        movies.add(new Movie("iron man","2012",R.drawable.cover3));
-        movies.add(new Movie("thor","1980",R.drawable.cover1));
-        movies.add(new Movie("lion king","2004",R.drawable.cover2));
-        movies.add(new Movie("harry potter","201",R.drawable.cover2));
-        movies.add(new Movie("Battlefield Earth","2020",R.drawable.dave));
-        movies.add(new Movie("john wick","2003",R.drawable.cover2));
-        movies.add(new Movie("john wick 2","2009",R.drawable.cover1));
-        movies.add(new Movie("iron man","2012",R.drawable.cover3));
-        movies.add(new Movie("thor","1980",R.drawable.cover1));
-        movies.add(new Movie("lion king","2004",R.drawable.cover2));
-        movies.add(new Movie("harry potter","201",R.drawable.cover2));
-        movies.add(new Movie("Battlefield Earth","2020",R.drawable.cover1));
-        movies.add(new Movie("john wick","2003",R.drawable.cover2));
-        movies.add(new Movie("john wick 2","2009",R.drawable.cover1));
-        movies.add(new Movie("iron man","2012",R.drawable.cover3));
-        movies.add(new Movie("thor","1980",R.drawable.cover1));
-        movies.add(new Movie("lion king","2004",R.drawable.cover2));
-        movies.add(new Movie("harry potter","201",R.drawable.cover2));
 
-        RecyclerView myrv = (RecyclerView) findViewById(R.id.recycleview);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,movies);
-        myrv.setLayoutManager(new GridLayoutManager(this,3));
-        myrv.setAdapter(myAdapter);
 
     }
 
     @Override
     public void processFinish(ArrayList<MovieElements> output) {
-        //zooi voor recyclerview, en adapter
+        Log.d("MainActivity", "processFinish: is called");
+        movieElements = output;
+        RecyclerView myrv = (RecyclerView) findViewById(R.id.recycleview);
+        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, movieElements);
+        myrv.setLayoutManager(new GridLayoutManager(this,3));
+        myrv.setAdapter(myAdapter);
     }
 }
