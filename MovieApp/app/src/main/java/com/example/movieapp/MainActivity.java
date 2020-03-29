@@ -3,7 +3,6 @@ package com.example.movieapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.PopularDataProcessing;
 import com.example.movieapp.Domain.MovieElements;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
@@ -25,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     private ArrayList<MovieElements> movieElements;
     private int white;
     private int orange;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         popularDataProcessing.execute();
 
         all = (Button) findViewById(R.id.POPULAR);
-        all.setTextColor(Color.parseColor("#ffa500"));
+        all.setTextColor(orange);
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 expected.setTextColor(orange);
             }
         });
-
-
     }
 
     @Override

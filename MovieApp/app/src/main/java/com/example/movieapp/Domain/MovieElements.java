@@ -3,7 +3,6 @@ package com.example.movieapp.Domain;
 import java.io.Serializable;
 
 public class MovieElements implements Serializable {
-
     private String filmTitel;
     private String description;
     private int rating;

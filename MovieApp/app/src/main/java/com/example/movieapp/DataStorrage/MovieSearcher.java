@@ -6,7 +6,6 @@ import com.example.movieapp.Domain.MovieElements;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import static android.content.ContentValues.TAG;
 
 public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElements>> {
     public AsyncResponse asyncResponse = null;
@@ -31,7 +30,7 @@ public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElemen
                         JSONObject result = results.getJSONObject(i);
                         MovieElements element = new MovieElements();
                         element.setFilmTitel(result.getString("title"));
-                        Log.d(TAG, "doInBackground: title: " + element.getFilmTitel());
+                        Log.d("MovieSearcher", "doInBackground: title: " + element.getFilmTitel());
                         element.setDescription(result.getString("overview"));
                         element.setRating(result.getInt("vote_average"));
                         element.setImageUrlW200(NetworkUtils.buildImageUrlW200(result.getString("poster_path")));
