@@ -10,6 +10,7 @@ import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;

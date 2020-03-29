@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     android:background="#27333D"
     tools:context=".MainActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="414dp"
+            android:layout_height="219dp"
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="414dp"
-        android:layout_height="219dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <HorizontalScrollView
             android:id="@+id/scroll"
@@ -25,19 +25,19 @@
             android:layout_height="46dp"
             app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/POPULAR"
-                style="?android:attr/borderlessButtonStyle"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/all"
-                android:textColor="@color/white"
-                />
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/POPULAR"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/all"
+                    android:textColor="@color/white"
+                    />
 
                 <Button
                     android:id="@+id/rating"
@@ -46,45 +46,61 @@
                     android:layout_height="wrap_content"
                     android:text="@string/rating"
                     android:textColor="@color/white"
-                 />
+                    />
 
-            <Button
-                android:id="@+id/expected"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/expected"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-                android:text="@string/expected"
-                android:textColor="@color/white"
-                 />
+                    android:text="@string/expected"
+                    android:textColor="@color/white"
+                    />
 
-            <Button
-                android:id="@+id/date"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/date"
-                android:textColor="@color/white" />
-        </LinearLayout>
+                <Button
+                    android:id="@+id/date"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textColor="@color/white" />
+            </LinearLayout>
 
-    </HorizontalScrollView>
+        </HorizontalScrollView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleview"
-        android:layout_width="409dp"
-        android:layout_height="462dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginRight="1dp"
-        android:layout_marginBottom="1dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleview"
+            android:layout_width="match_parent"
+            android:layout_height="462dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginBottom="1dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/scroll"
+            app:layout_constraintTop_toBottomOf="@+id/scroll" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/scroll"
-        app:layout_constraintTop_toBottomOf="@+id/scroll" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-        </LinearLayout>
+        <ImageView
+            android:paddingLeft="13dp"
+            android:id="@+id/imageView3"
+            android:layout_width="39dp"
+            android:layout_height="38dp"
+            app:srcCompat="@drawable/mg" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
