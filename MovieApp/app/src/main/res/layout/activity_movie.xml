@@ -37,6 +37,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/topping"
             android:layout_width="match_parent"
             android:layout_height="480dp">
         </ImageView>
@@ -162,36 +163,17 @@
             android:textColor="@color/darker_white"
             android:textSize="15sp"
             android:textStyle="bold" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/whoop"
-            android:layout_width="match_parent"
-            android:layout_height="545dp">
-        </ImageView>
 
         <ImageView
             android:id="@+id/trailerButton"
-            android:layout_width="81dp"
-            android:layout_height="79dp"
-            android:layout_alignRight="@+id/whoop"
-            android:layout_alignBottom="@+id/whoop"
+            android:layout_width="67dp"
+            android:layout_height="69dp"
+
+            android:layout_marginTop="-40dp"
+            android:layout_alignTop="@+id/testing"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="28dp"
-            android:layout_alignEnd="@+id/whoop">
+            android:layout_alignParentRight="true">
+
         </ImageView>
-
     </RelativeLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
