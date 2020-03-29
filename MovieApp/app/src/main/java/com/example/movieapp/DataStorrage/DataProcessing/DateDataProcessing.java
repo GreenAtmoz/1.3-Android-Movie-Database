@@ -1,48 +1,50 @@
-package com.example.movieapp.DataStorrage;
+package com.example.movieapp.DataStorrage.DataProcessing;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import static android.content.ContentValues.TAG;
 
-public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElements>> {
+public class DateDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
     public AsyncResponse asyncResponse = null;
     private ArrayList<MovieElements> movieElements;
-    private String search;
+    private static final int aantalPaginas = 5; //het aantal pagina's met resultaten die worden weergegeven. Iedere pagina bevat 20 resultaten.
 
-    public MovieSearcher(ArrayList<MovieElements> movieElements, String search) {
+    public DateDataProcessing(ArrayList<MovieElements> movieElements) {
         this.movieElements = movieElements;
-        this.search = search;
     }
 
     @Override
     protected ArrayList<MovieElements> doInBackground(String... strings) {
-        Log.d("Dataprocessing", "doInBackground");
+        NetworkUtils.checkLanguage();
+        Log.d("DateDataprocessing", "doInBackground");
         try {
-                int page = 0;
-                int aantalPaginas = 1;
-                for (int j = 0; j < aantalPaginas; j++) {
-                    page++;
-                    String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(NetworkUtils.buildSearchUrl(search, page));
-                    assert jsonResponseString != null;
-                    JSONObject object = new JSONObject(jsonResponseString);
-                    aantalPaginas = object.getInt("page");
-                    JSONArray results = object.getJSONArray("results");
-                    for (int i = 0; i < results.length(); i++) {
+            int page = 0;
+            for (int j = 0; j < aantalPaginas; j++) {
+                page++;
+                String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(NetworkUtils.buildDateUrl(page));
+                JSONObject object = new JSONObject(jsonResponseString);
+                JSONArray results = object.getJSONArray("results");
+                for (int i = 0; i < results.length(); i++) {
+                    Object obj = results.get(i);
+                    if (obj != null && !obj.toString().equals("null")) {
                         JSONObject result = results.getJSONObject(i);
                         MovieElements element = new MovieElements();
                         element.setId(result.getInt("id"));
                         String title = result.getString("title");
                         if (title.isEmpty()){
-                            title = "-";
+                            title = "null";
                         }
                         element.setFilmTitel(title);
                         String description;
                         if (result.isNull("overview")){
-                            description = "";
-                        } else {
+                            description = "null";
+                        }else {
                             description = result.getString("overview");
                         }
                         element.setDescription(description);
@@ -54,17 +56,21 @@ public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElemen
                         String date;
                         if (result.isNull("release_date")){
                             date = "null";
-                        } else {
+                        }else{
                             date = result.getString("release_date");
                         }
                         if (date.isEmpty()){
                             date = "null";
                         }
+//                        date = "testing";
                         element.setDate(date);
                         movieElements.add(element);
-//                        Log.d("MovieSearcher", "doInBackground: Title:" + element.getFilmTitel());
+                        Log.d("PopularDataProcessing", "doInBackground: Title:" + element.getFilmTitel());
+                    } else {
+                        continue;
                     }
                 }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,6 +80,6 @@ public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElemen
     @Override
     protected void onPostExecute(ArrayList<MovieElements> decorativeElements) {
         asyncResponse.processFinish(decorativeElements);
-        Log.d("MovieSearcher", "onPostExecute: " + movieElements);
+        Log.d(TAG, "onPostExecute: " + movieElements);
     }
 }

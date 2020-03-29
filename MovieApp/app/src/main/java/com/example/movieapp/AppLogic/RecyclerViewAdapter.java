@@ -36,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.movieTitle.setText(movieElements.get(position).getFilmTitel());
         Picasso.get()
                 .load(movieElements.get(position).getImageUrlW200())
