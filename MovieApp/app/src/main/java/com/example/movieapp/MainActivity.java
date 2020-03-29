@@ -78,14 +78,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             }
         });
         movies = new ArrayList<>();
-        movies.add(new Movie("Battlefield Earth","2020",R.drawable.cover1));
+        movies.add(new Movie("Battlefield Earth","2020",R.drawable.dave));
         movies.add(new Movie("john wick","2003",R.drawable.cover2));
         movies.add(new Movie("john wick 2","2009",R.drawable.cover1));
         movies.add(new Movie("iron man","2012",R.drawable.cover3));
         movies.add(new Movie("thor","1980",R.drawable.cover1));
         movies.add(new Movie("lion king","2004",R.drawable.cover2));
         movies.add(new Movie("harry potter","201",R.drawable.cover2));
-        movies.add(new Movie("Battlefield Earth","2020",R.drawable.cover1));
+        movies.add(new Movie("Battlefield Earth","2020",R.drawable.dave));
         movies.add(new Movie("john wick","2003",R.drawable.cover2));
         movies.add(new Movie("john wick 2","2009",R.drawable.cover1));
         movies.add(new Movie("iron man","2012",R.drawable.cover3));
