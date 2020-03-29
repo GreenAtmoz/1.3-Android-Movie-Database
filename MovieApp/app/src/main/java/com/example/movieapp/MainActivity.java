@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.movieapp.AppLogic.MovieActivity;
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.PopularDataProcessing;
