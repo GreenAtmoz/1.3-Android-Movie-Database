@@ -94,6 +94,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         RecyclerView myrv = (RecyclerView) findViewById(R.id.recycleview);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, movieElements);
         myrv.setLayoutManager(new GridLayoutManager(this,3));
-        myrv.setAdapter(myAdapter);
+        myrv.setAdapter(myAdapter);//.
     }
 }
