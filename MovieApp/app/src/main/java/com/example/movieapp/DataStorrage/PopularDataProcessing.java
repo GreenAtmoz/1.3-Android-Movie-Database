@@ -22,7 +22,6 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
         Log.d("Dataprocessing", "doInBackground");
         try {
             int page = 0;
-            int counter = 0;
             for (int j = 0; j < aantalPaginas; j++) {
                 page++;
                 String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(NetworkUtils.buildPopularUrl(page));
@@ -39,16 +38,12 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
                     element.setImageUrlW500(NetworkUtils.buildImageUrlW500(result.getString("poster_path")));
                     element.setDate(result.getString("release_date"));
                     element.setId(result.getInt("id"));
-                    //element.setTrailerLink(attributes.getString(""));
                     movieElements.add(element);
-                    counter++;
-                    Log.d(TAG, "doInBackground: " + counter);
             }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return movieElements;
     }
 
