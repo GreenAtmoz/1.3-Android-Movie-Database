@@ -1,11 +1,9 @@
 package com.example.movieapp.AppLogic;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
@@ -17,7 +15,6 @@ public class MovieActivity extends AppCompatActivity {
     private ImageView mImage;
     private TextView mRating;
     private TextView mDate;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
