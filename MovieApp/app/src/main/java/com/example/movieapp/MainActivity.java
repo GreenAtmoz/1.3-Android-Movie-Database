@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView2.setImageResource(R.drawable.mainmenucover);
 
-        white = getResources().getColor(R.color.grey);
+        white = getResources().getColor(R.color.white);
         orange = getResources().getColor(R.color.orange);
 
         movieElements = new ArrayList<>();
