@@ -2,20 +2,22 @@ package com.example.movieapp.DataStorrage;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
 import com.example.movieapp.Domain.MovieElements;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.net.URL;
 import java.util.ArrayList;
+
 import static android.content.ContentValues.TAG;
 
-public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
+public class ExpectedDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
     public AsyncResponse asyncResponse = null;
     private ArrayList<MovieElements> movieElements;
     private static final int aantalPaginas = 5; //het aantal pagina's met resultaten die worden weergegeven. Iedere pagina bevat 20 resultaten.
 
-    public PopularDataProcessing(ArrayList<MovieElements> movieElements) {
+    public ExpectedDataProcessing(ArrayList<MovieElements> movieElements) {
         this.movieElements = movieElements;
     }
 
@@ -26,7 +28,7 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
             int page = 0;
             for (int j = 0; j < aantalPaginas; j++) {
                 page++;
-                String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(NetworkUtils.buildPopularUrl(page));
+                String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(NetworkUtils.buildExpectedUrl(page));
                 JSONObject object = new JSONObject(jsonResponseString);
                 JSONArray results = object.getJSONArray("results");
                 for (int i = 0; i < results.length(); i++) {
@@ -35,7 +37,7 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
                     element.setFilmTitel(result.getString("title"));
                     Log.d(TAG, "doInBackground: title: " + element.getFilmTitel());
                     element.setDescription(result.getString("overview"));
-                    element.setRating(result.getDouble("vote_average"));
+                    element.setRating(result.getInt("vote_average"));
                     element.setImageUrlW200(NetworkUtils.buildImageUrlW200(result.getString("poster_path")));
                     element.setImageUrlW500(NetworkUtils.buildImageUrlW500(result.getString("poster_path")));
                     element.setDate(result.getString("release_date"));
