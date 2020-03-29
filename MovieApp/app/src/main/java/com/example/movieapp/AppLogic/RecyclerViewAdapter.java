@@ -11,6 +11,7 @@ import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -53,12 +54,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView movieTitle;
         ImageView img_Cover;
         TextView releasedate;
+        CardView cardView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             movieTitle = (TextView) itemView.findViewById(R.id.MovieTitle);
             img_Cover = (ImageView) itemView.findViewById(R.id.MovieCover);
             releasedate = (TextView) itemView.findViewById(R.id.ReleaseDate);
+            cardView = (CardView) itemView.findViewById(R.id.cardview);
         }
     }
 }
