@@ -5,9 +5,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public Button date;
     public Button rating;
     public Button expected;
+    public EditText EditText;
     private ArrayList<MovieElements> movieElements;
     private int white;
     private int orange;
@@ -35,6 +41,28 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         setContentView(R.layout.activity_main);
         imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView2.setImageResource(R.drawable.mainmenucover);
+
+        EditText = (EditText) findViewById(R.id.EditText);
+        EditText.setOnEditorActionListener(
+                new EditText.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                        if (actionId == EditorInfo.IME_NULL
+                                && event.getAction() == KeyEvent.ACTION_DOWN &&
+                                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                            //TODO RIK ZET HIER DE METHOD DIE JE WIL RUNNEN OM DE ZOEKFUNCTIE IN TE LADEN
+                        }
+                        return true;
+                    }
+                }
+        );
+        EditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText.setText("");
+
+            }
+        });
 
         white = getResources().getColor(R.color.white);
         orange = getResources().getColor(R.color.orange);
