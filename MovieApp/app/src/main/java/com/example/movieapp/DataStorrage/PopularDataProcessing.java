@@ -35,7 +35,7 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
                     element.setFilmTitel(result.getString("title"));
                     Log.d(TAG, "doInBackground: title: " + element.getFilmTitel());
                     element.setDescription(result.getString("overview"));
-                    element.setRating(result.getInt("vote_average"));
+                    element.setRating(result.getDouble("vote_average"));
                     element.setImageUrlW200(NetworkUtils.buildImageUrlW200(result.getString("poster_path")));
                     element.setImageUrlW500(NetworkUtils.buildImageUrlW500(result.getString("poster_path")));
                     element.setDate(result.getString("release_date"));
