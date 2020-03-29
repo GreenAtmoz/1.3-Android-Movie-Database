@@ -11,6 +11,7 @@ import com.example.movieapp.Movie;
 import com.example.movieapp.R;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -40,6 +41,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.movieTitle.setText(mdata.get(position).getTitle());
         holder.img_Cover.setImageResource(mdata.get(position).getThumbnail());
         holder.releasedate.setText(mdata.get(position).getYear());
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -52,12 +60,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView movieTitle;
         ImageView img_Cover;
         TextView releasedate;
+        CardView cardView;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             movieTitle = (TextView) itemView.findViewById(R.id.MovieTitle);
             img_Cover = (ImageView) itemView.findViewById(R.id.MovieCover);
             releasedate = (TextView) itemView.findViewById(R.id.ReleaseDate);
+            cardView = (CardView) itemView.findViewById(R.id.cardview);
         }
 
     }
