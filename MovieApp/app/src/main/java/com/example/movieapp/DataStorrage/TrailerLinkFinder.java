@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class TrailerLinkFinder extends AsyncTask<String, Void, String>{
+    public AsyncResponse asyncResponse = null;
     private int movieId;
     private static final String startUrl = "http://api.themoviedb.org/3/movie/";
     private static final String endUrl = "/videos?api_key=";
