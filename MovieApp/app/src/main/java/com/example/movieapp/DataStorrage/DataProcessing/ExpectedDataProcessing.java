@@ -2,14 +2,11 @@ package com.example.movieapp.DataStorrage.DataProcessing;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -58,8 +55,11 @@ public class ExpectedDataProcessing extends AsyncTask<String, Void, ArrayList<Mo
                     String date;
                     if (result.isNull("release_date")){
                         date = "null";
-                    }else {
+                    }else{
                         date = result.getString("release_date");
+                    }
+                    if (date.isEmpty()){
+                        date = "null";
                     }
                     element.setDate(date);
                     movieElements.add(element);
