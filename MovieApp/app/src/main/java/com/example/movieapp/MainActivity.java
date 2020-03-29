@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         imageView2.setImageResource(R.drawable.mainmenucover);
 
 
-        all = (Button) findViewById(R.id.all);
+        all = (Button) findViewById(R.id.POPULAR);
         all.setTextColor(Color.parseColor("#ffa500"));
         all.setOnClickListener(new View.OnClickListener() {
             @Override
