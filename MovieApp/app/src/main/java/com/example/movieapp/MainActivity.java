@@ -3,17 +3,12 @@ package com.example.movieapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
-import com.example.movieapp.AppLogic.MovieActivity;
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.PopularDataProcessing;
@@ -28,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public Button rating;
     public Button expected;
     private ArrayList<MovieElements> movieElements;
+    private int white;
+    private int orange;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         setContentView(R.layout.activity_main);
         imageView2 = (ImageView) findViewById(R.id.imageView2);
         imageView2.setImageResource(R.drawable.mainmenucover);
+
+        white = getResources().getColor(R.color.grey);
+        orange = getResources().getColor(R.color.orange);
 
         movieElements = new ArrayList<>();
         PopularDataProcessing popularDataProcessing = new PopularDataProcessing(movieElements);
@@ -47,10 +48,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(Color.parseColor("#ffa500"));
-                date.setTextColor(Color.parseColor("#FFFFFF"));
-                rating.setTextColor(Color.parseColor("#FFFFFF"));
-                expected.setTextColor(Color.parseColor("#FFFFFF"));
+                all.setTextColor(orange);
+                date.setTextColor(white);
+                rating.setTextColor(white);
+                expected.setTextColor(white);
             }
         });
 
@@ -58,10 +59,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(Color.parseColor("#FFFFFF"));
-                date.setTextColor(Color.parseColor("#ffa500"));
-                rating.setTextColor(Color.parseColor("#FFFFFF"));
-                expected.setTextColor(Color.parseColor("#FFFFFF"));
+                all.setTextColor(white);
+                date.setTextColor(orange);
+                rating.setTextColor(white);
+                expected.setTextColor(white);
             }
         });
 
@@ -69,10 +70,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         rating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(Color.parseColor("#FFFFFF"));
-                date.setTextColor(Color.parseColor("#FFFFFF"));
-                rating.setTextColor(Color.parseColor("#ffa500"));
-                expected.setTextColor(Color.parseColor("#FFFFFF"));
+                all.setTextColor(white);
+                date.setTextColor(white);
+                rating.setTextColor(orange);
+                expected.setTextColor(white);
             }
         });
 
@@ -80,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         expected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(Color.parseColor("#FFFFFF"));
-                date.setTextColor(Color.parseColor("#FFFFFF"));
-                rating.setTextColor(Color.parseColor("#FFFFFF"));
-                expected.setTextColor(Color.parseColor("#ffa500"));
+                all.setTextColor(white);
+                date.setTextColor(white);
+                rating.setTextColor(white);
+                expected.setTextColor(orange);
             }
         });
 
