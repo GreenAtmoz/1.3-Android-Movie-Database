@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         popularDataProcessing.asyncResponse = this;
         popularDataProcessing.execute();
 
-        all = (Button) findViewById(R.id.all);
+        all = (Button) findViewById(R.id.POPULAR);
         all.setTextColor(Color.parseColor("#ffa500"));
         all.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +97,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         RecyclerView myrv = (RecyclerView) findViewById(R.id.recycleview);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, movieElements);
         myrv.setLayoutManager(new GridLayoutManager(this,3));
-        myrv.setAdapter(myAdapter);
+        myrv.setAdapter(myAdapter);//.
     }
 }
