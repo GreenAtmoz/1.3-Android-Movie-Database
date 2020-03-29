@@ -1,8 +1,10 @@
-package com.example.movieapp.DataStorrage;
+package com.example.movieapp.DataStorrage.DataProcessing;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
 
 import org.json.JSONArray;
@@ -23,6 +25,7 @@ public class ExpectedDataProcessing extends AsyncTask<String, Void, ArrayList<Mo
 
     @Override
     protected ArrayList<MovieElements> doInBackground(String... strings) {
+        NetworkUtils.checkLanguage();
         Log.d("Dataprocessing", "doInBackground");
         try {
             int page = 0;
@@ -34,15 +37,33 @@ public class ExpectedDataProcessing extends AsyncTask<String, Void, ArrayList<Mo
                 for (int i = 0; i < results.length(); i++) {
                     JSONObject result = results.getJSONObject(i);
                     MovieElements element = new MovieElements();
-                    element.setFilmTitel(result.getString("title"));
-                    Log.d(TAG, "doInBackground: title: " + element.getFilmTitel());
-                    element.setDescription(result.getString("overview"));
-                    element.setRating(result.getInt("vote_average"));
+                    element.setId(result.getInt("id"));
+                    String title = result.getString("title");
+                    if (title.isEmpty()){
+                        title = "-";
+                    }
+                    element.setFilmTitel(title);
+                    String description;
+                    if (result.isNull("overview")){
+                        description = "";
+                    }else {
+                        description = result.getString("overview");
+                    }
+                    element.setDescription(description);
+                    Double rating = result.getDouble("vote_average");
+                    element.setRating(rating);
                     element.setImageUrlW200(NetworkUtils.buildImageUrlW200(result.getString("poster_path")));
                     element.setImageUrlW500(NetworkUtils.buildImageUrlW500(result.getString("poster_path")));
-                    element.setDate(result.getString("release_date"));
-                    element.setId(result.getInt("id"));
+
+                    String date;
+                    if (result.isNull("release_date")){
+                        date = "0000-00-00";
+                    }else {
+                        date = result.getString("release_date");
+                    }
+                    element.setDate(date);
                     movieElements.add(element);
+                    Log.d(TAG, "doInBackground: Title:" + element.getFilmTitel());
                 }
             }
         } catch (Exception e) {

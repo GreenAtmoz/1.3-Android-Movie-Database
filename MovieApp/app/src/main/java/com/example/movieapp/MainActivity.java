@@ -10,11 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
-import com.example.movieapp.DataStorrage.DateDataProcessing;
-import com.example.movieapp.DataStorrage.ExpectedDataProcessing;
-import com.example.movieapp.DataStorrage.PopularDataProcessing;
+import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
+import com.example.movieapp.DataStorrage.DataProcessing.ExpectedDataProcessing;
+import com.example.movieapp.DataStorrage.DataProcessing.PopularDataProcessing;
+import com.example.movieapp.DataStorrage.DataProcessing.RatingDataProcessing;
 import com.example.movieapp.DataStorrage.NetworkUtils;
-import com.example.movieapp.DataStorrage.RatingDataProcessing;
 import com.example.movieapp.Domain.MovieElements;
 import java.util.ArrayList;
 
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
         white = getResources().getColor(R.color.white);
         orange = getResources().getColor(R.color.orange);
+        NetworkUtils.language = Language.ENGLISH;
 
         movieElements = new ArrayList<>();
         PopularDataProcessing popularDataProcessing = null;
@@ -73,8 +74,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 expected.setTextColor(white);
 
                 movieElements = new ArrayList<>();
-                DateDataProcessing dateDataProcessing = null;
-                dateDataProcessing = new DateDataProcessing(movieElements);
+                DateDataProcessing dateDataProcessing = new DateDataProcessing(movieElements);
                 dateDataProcessing.asyncResponse = MainActivity.this;
                 dateDataProcessing.execute();
             }
