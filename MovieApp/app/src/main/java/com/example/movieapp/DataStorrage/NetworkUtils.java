@@ -34,18 +34,6 @@ public class NetworkUtils {
         }
     }
 
-    public static URL buildUrl(String mString_url) {
-        Log.d("NetworkUtils", "buildUrl: ");
-        URL mUrl = null;
-        try {
-            mUrl = new URL(mString_url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        Log.d("NetworkUrl", "buildUrl: " + mUrl);
-        return mUrl;
-    }
-
     public static String buildImageUrlW500(String inputPath) {
         Log.d("NetworkUtils", "buildImageUrlW500: ");
         String mUrl = null;
@@ -71,6 +59,30 @@ public class NetworkUtils {
     }
 
     public static URL buildPopularUrl(int page) throws Exception{
+        String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
+        String pageAddon = "&page=";
+        URL output = new URL(base + apiKey + language + pageAddon + page);
+        Log.d("NetworkUtils", "buildPopularUrlString: " + output);
+        return output;
+    }
+
+    public static URL buildDateUrl(int page) throws Exception{
+        String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
+        String pageAddon = "&page=";
+        URL output = new URL(base + apiKey + language + pageAddon + page);
+        Log.d("NetworkUtils", "buildPopularUrlString: " + output);
+        return output;
+    }
+
+    public static URL buildRatingUrl(int page) throws Exception{
+        String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
+        String pageAddon = "&page=";
+        URL output = new URL(base + apiKey + language + pageAddon + page);
+        Log.d("NetworkUtils", "buildPopularUrlString: " + output);
+        return output;
+    }
+
+    public static URL buildExpectedUrl(int page) throws Exception{
         String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
         String pageAddon = "&page=";
         URL output = new URL(base + apiKey + language + pageAddon + page);

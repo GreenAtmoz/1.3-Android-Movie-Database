@@ -10,7 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.DateDataProcessing;
+import com.example.movieapp.DataStorrage.ExpectedDataProcessing;
 import com.example.movieapp.DataStorrage.PopularDataProcessing;
+import com.example.movieapp.DataStorrage.NetworkUtils;
+import com.example.movieapp.DataStorrage.RatingDataProcessing;
 import com.example.movieapp.Domain.MovieElements;
 import java.util.ArrayList;
 
@@ -36,8 +40,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         orange = getResources().getColor(R.color.orange);
 
         movieElements = new ArrayList<>();
-        PopularDataProcessing popularDataProcessing = new PopularDataProcessing(movieElements);
-        popularDataProcessing.asyncResponse = this;
+        PopularDataProcessing popularDataProcessing = null;
+        popularDataProcessing = new PopularDataProcessing(movieElements);
+        popularDataProcessing.asyncResponse = MainActivity.this;
         popularDataProcessing.execute();
 
         all = (Button) findViewById(R.id.POPULAR);
@@ -49,6 +54,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 date.setTextColor(white);
                 rating.setTextColor(white);
                 expected.setTextColor(white);
+
+                movieElements = new ArrayList<>();
+                PopularDataProcessing popularDataProcessing = null;
+                popularDataProcessing = new PopularDataProcessing(movieElements);
+                popularDataProcessing.asyncResponse = MainActivity.this;
+                popularDataProcessing.execute();
             }
         });
 
@@ -60,6 +71,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 date.setTextColor(orange);
                 rating.setTextColor(white);
                 expected.setTextColor(white);
+
+                movieElements = new ArrayList<>();
+                DateDataProcessing dateDataProcessing = null;
+                dateDataProcessing = new DateDataProcessing(movieElements);
+                dateDataProcessing.asyncResponse = MainActivity.this;
+                dateDataProcessing.execute();
             }
         });
 
@@ -71,6 +88,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 date.setTextColor(white);
                 rating.setTextColor(orange);
                 expected.setTextColor(white);
+
+                movieElements = new ArrayList<>();
+                RatingDataProcessing ratingDataProcessing = null;
+                ratingDataProcessing = new RatingDataProcessing(movieElements);
+                ratingDataProcessing.asyncResponse = MainActivity.this;
+                ratingDataProcessing.execute();
             }
         });
 
@@ -82,6 +105,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 date.setTextColor(white);
                 rating.setTextColor(white);
                 expected.setTextColor(orange);
+
+                movieElements = new ArrayList<>();
+                ExpectedDataProcessing expectedDataProcessing = null;
+                expectedDataProcessing = new ExpectedDataProcessing(movieElements);
+                expectedDataProcessing.asyncResponse = MainActivity.this;
+                expectedDataProcessing.execute();
             }
         });
     }
