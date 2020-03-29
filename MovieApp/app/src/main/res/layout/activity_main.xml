@@ -31,11 +31,11 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/date"
+                android:id="@+id/POPULAR"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/date"
+                android:text="@string/all"
                 android:textColor="@color/white"
                 />
 
@@ -59,11 +59,11 @@
                  />
 
             <Button
-                android:id="@+id/POPULAR"
+                android:id="@+id/date"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all"
+                android:text="@string/date"
                 android:textColor="@color/white" />
         </LinearLayout>
 
