@@ -19,6 +19,7 @@ import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.ExpectedDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.PopularDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.RatingDataProcessing;
+import com.example.movieapp.DataStorrage.MovieSearcher;
 import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
 import java.util.ArrayList;
@@ -51,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                                 && event.getAction() == KeyEvent.ACTION_DOWN &&
                                     event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                             //TODO RIK ZET HIER DE METHOD DIE JE WIL RUNNEN OM DE ZOEKFUNCTIE IN TE LADEN
+                            movieElements = new ArrayList<>();
+                            MovieSearcher movieSearcher = new MovieSearcher(movieElements, String.valueOf(EditText.getText()) );
+                            movieSearcher.asyncResponse = MainActivity.this;
+                            movieSearcher.execute();
                         }
                         return true;
                     }
@@ -69,8 +74,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         NetworkUtils.language = Language.ENGLISH;
 
         movieElements = new ArrayList<>();
-        PopularDataProcessing popularDataProcessing = null;
-        popularDataProcessing = new PopularDataProcessing(movieElements);
+        PopularDataProcessing popularDataProcessing = new PopularDataProcessing(movieElements);
         popularDataProcessing.asyncResponse = MainActivity.this;
         popularDataProcessing.execute();
 
@@ -102,7 +106,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 expected.setTextColor(white);
 
                 movieElements = new ArrayList<>();
-                DateDataProcessing dateDataProcessing = new DateDataProcessing(movieElements);
+                DateDataProcessing dateDataProcessing = null;
+                dateDataProcessing = new DateDataProcessing(movieElements);
                 dateDataProcessing.asyncResponse = MainActivity.this;
                 dateDataProcessing.execute();
             }
@@ -150,6 +155,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         RecyclerView myrv = (RecyclerView) findViewById(R.id.recycleview);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, movieElements);
         myrv.setLayoutManager(new GridLayoutManager(this,3));
-        myrv.setAdapter(myAdapter);//.
+        myrv.setAdapter(myAdapter);
     }
 }

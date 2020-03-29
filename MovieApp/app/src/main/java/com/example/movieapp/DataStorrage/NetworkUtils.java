@@ -10,6 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 public class NetworkUtils {
     private static final String mString_pictureUrlW500 = "https://image.tmdb.org/t/p/w500";
     private static final String mString_pictureUrlW200 = "https://image.tmdb.org/t/p/w200";
@@ -102,6 +104,15 @@ public class NetworkUtils {
         }else if (Language.NEDERLANDS.equals(language)){
             languageString = Dutch;
         }
+    }
+
+    public static URL buildSearchUrl(String search, int page) throws Exception{
+        String base = "https://api.themoviedb.org/3/search/movie?api_key=";
+        String query = "&query=";
+        String pageAddon = "&page=";
+        String output = base + apiKey + query + search + pageAddon + page;
+        Log.d(TAG, "buildSearchUrl: " + output);
+        return new URL(output);
     }
 
 }

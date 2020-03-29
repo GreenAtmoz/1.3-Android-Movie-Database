@@ -13,7 +13,7 @@ import static android.content.ContentValues.TAG;
 public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
     public AsyncResponse asyncResponse = null;
     private ArrayList<MovieElements> movieElements;
-    private static final int aantalPaginas = 21; //het aantal pagina's met resultaten die worden weergegeven. Iedere pagina bevat 20 resultaten.
+    private static final int aantalPaginas = 5; //het aantal pagina's met resultaten die worden weergegeven. Iedere pagina bevat 20 resultaten.
 
     public PopularDataProcessing(ArrayList<MovieElements> movieElements) {
         this.movieElements = movieElements;
@@ -22,28 +22,26 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
     @Override
     protected ArrayList<MovieElements> doInBackground(String... strings) {
         NetworkUtils.checkLanguage();
-        Log.d("Dataprocessing", "doInBackground");
+        Log.d("PopularDataprocessing", "doInBackground");
         try {
             int page = 0;
-            int counter = 0;
             for (int j = 0; j < aantalPaginas; j++) {
                 page++;
                 String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(NetworkUtils.buildPopularUrl(page));
                 JSONObject object = new JSONObject(jsonResponseString);
                 JSONArray results = object.getJSONArray("results");
                 for (int i = 0; i < results.length(); i++) {
-                    counter++;
                     JSONObject result = results.getJSONObject(i);
                     MovieElements element = new MovieElements();
                     element.setId(result.getInt("id"));
                     String title = result.getString("title");
                     if (title.isEmpty()){
-                        title = "-";
+                        title = "null";
                     }
                     element.setFilmTitel(title);
                     String description;
                     if (result.isNull("overview")){
-                        description = "";
+                        description = "null";
                     }else {
                         description = result.getString("overview");
                     }
@@ -55,14 +53,13 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
 
                     String date;
                     if (result.isNull("release_date")){
-                        date = "0000-00-00";
+                        date = "null";
                     }else {
                         date = result.getString("release_date");
                     }
                     element.setDate(date);
                     movieElements.add(element);
-                    Log.d(TAG, "doInBackground: Title:" + element.getFilmTitel());
-                    Log.d(TAG, "doInBackground: count: " + counter);
+                    Log.d("PopularDataProcessing", "doInBackground: Title:" + element.getFilmTitel());
                 }
             }
         } catch (Exception e) {

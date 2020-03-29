@@ -40,12 +40,12 @@ public class ExpectedDataProcessing extends AsyncTask<String, Void, ArrayList<Mo
                     element.setId(result.getInt("id"));
                     String title = result.getString("title");
                     if (title.isEmpty()){
-                        title = "-";
+                        title = "null";
                     }
                     element.setFilmTitel(title);
                     String description;
                     if (result.isNull("overview")){
-                        description = "";
+                        description = "null";
                     }else {
                         description = result.getString("overview");
                     }
@@ -57,13 +57,13 @@ public class ExpectedDataProcessing extends AsyncTask<String, Void, ArrayList<Mo
 
                     String date;
                     if (result.isNull("release_date")){
-                        date = "0000-00-00";
+                        date = "null";
                     }else {
                         date = result.getString("release_date");
                     }
                     element.setDate(date);
                     movieElements.add(element);
-                    Log.d(TAG, "doInBackground: Title:" + element.getFilmTitel());
+                    Log.d("ExpectedDataProcessing", "doInBackground: Title:" + element.getFilmTitel());
                 }
             }
         } catch (Exception e) {

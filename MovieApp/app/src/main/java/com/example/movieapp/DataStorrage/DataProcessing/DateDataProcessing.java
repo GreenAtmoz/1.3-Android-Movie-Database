@@ -2,16 +2,12 @@ package com.example.movieapp.DataStorrage.DataProcessing;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import static android.content.ContentValues.TAG;
 
 public class DateDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
@@ -35,35 +31,44 @@ public class DateDataProcessing extends AsyncTask<String, Void, ArrayList<MovieE
                 JSONObject object = new JSONObject(jsonResponseString);
                 JSONArray results = object.getJSONArray("results");
                 for (int i = 0; i < results.length(); i++) {
-                    JSONObject result = results.getJSONObject(i);
-                    MovieElements element = new MovieElements();
-                    element.setId(result.getInt("id"));
-                    String title = result.getString("title");
-                    if (title.isEmpty()){
-                        title = "-";
-                    }
-                    element.setFilmTitel(title);
-                    String description;
-                    if (result.isNull("overview")){
-                        description = "";
-                    }else {
-                        description = result.getString("overview");
-                    }
-                    element.setDescription(description);
-                    Double rating = result.getDouble("vote_average");
-                    element.setRating(rating);
-                    element.setImageUrlW200(NetworkUtils.buildImageUrlW200(result.getString("poster_path")));
-                    element.setImageUrlW500(NetworkUtils.buildImageUrlW500(result.getString("poster_path")));
+                    Object obj = results.get(i);
+                    if (obj != null && !obj.toString().equals("null")) {
+                        JSONObject result = results.getJSONObject(i);
+                        MovieElements element = new MovieElements();
+                        element.setId(result.getInt("id"));
+                        String title = result.getString("title");
+                        if (title.isEmpty()){
+                            title = "null";
+                        }
+                        element.setFilmTitel(title);
+                        String description;
+                        if (result.isNull("overview")){
+                            description = "null";
+                        }else {
+                            description = result.getString("overview");
+                        }
+                        element.setDescription(description);
+                        Double rating = result.getDouble("vote_average");
+                        element.setRating(rating);
+                        element.setImageUrlW200(NetworkUtils.buildImageUrlW200(result.getString("poster_path")));
+                        element.setImageUrlW500(NetworkUtils.buildImageUrlW500(result.getString("poster_path")));
 
-                    String date;
-                    if (result.isNull("release_date")){
-                        date = "0000-00-00";
-                    }else {
-                        date = result.getString("release_date");
+                        String date;
+                        if (result.isNull("release_date")){
+                            date = "null";
+                        }else{
+                            date = result.getString("release_date");
+                        }
+                        if (date.isEmpty()){
+                            date = "null";
+                        }
+//                        date = "testing";
+                        element.setDate(date);
+                        movieElements.add(element);
+                        Log.d("PopularDataProcessing", "doInBackground: Title:" + element.getFilmTitel());
+                    } else {
+                        continue;
                     }
-                    element.setDate(date);
-                    movieElements.add(element);
-                    Log.d(TAG, "doInBackground: Title:" + element.getFilmTitel());
                 }
             }
         } catch (Exception e) {
