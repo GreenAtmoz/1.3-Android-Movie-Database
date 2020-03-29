@@ -13,6 +13,7 @@ public class NetworkUtils {
     private static final String mString_pictureUrlW500 = "https://image.tmdb.org/t/p/w500";
     private static final String mString_pictureUrlW200 = "https://image.tmdb.org/t/p/w200";
     private static final String language = "&language=en-US";
+    public static final String apiKey = "018bccaff77c7e87b7a1ba9af79aed2c";
 
 
     public static String getResponseFromHttpUrl(URL url) throws IOException {
@@ -73,10 +74,10 @@ public class NetworkUtils {
         return mUrl;
     }
 
-    public static URL buildPopularUrlString(String ApiKey, int page) throws Exception{
+    public static URL buildPopularUrl(int page) throws Exception{
         String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
         String pageAddon = "&page=";
-        URL output = new URL(base + ApiKey + language + pageAddon + page);
+        URL output = new URL(base + apiKey + language + pageAddon + page);
         Log.d("NetworkUtils", "buildPopularUrlString: " + output);
         return output;
     }
