@@ -18,10 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-
     private Context mContext;
     private ArrayList<MovieElements> movieElements;
-
 
     public RecyclerViewAdapter(Context mContext, ArrayList<MovieElements> movieElements) {
         this.mContext = mContext;
@@ -31,9 +29,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view;
         LayoutInflater mInflater = LayoutInflater.from(mContext);
-        view = mInflater.inflate(R.layout.cardview_movie,parent,false);
+        View view = mInflater.inflate(R.layout.cardview_movie,parent,false);
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        layoutParams.width = (int)(parent.getWidth() * 0.3);
+        view.setLayoutParams(layoutParams);
         return new MyViewHolder(view);
     }
 
@@ -53,8 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             }
         });
     }
-
-
+    
     @Override
     public int getItemCount() {
         return movieElements.size();
