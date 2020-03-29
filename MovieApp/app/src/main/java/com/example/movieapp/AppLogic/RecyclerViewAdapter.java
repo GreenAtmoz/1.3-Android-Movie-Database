@@ -1,12 +1,12 @@
 package com.example.movieapp.AppLogic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
@@ -20,6 +20,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Context mContext;
     private ArrayList<MovieElements> movieElements;
+
 
     public RecyclerViewAdapter(Context mContext, ArrayList<MovieElements> movieElements) {
         this.mContext = mContext;
@@ -36,12 +37,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.movieTitle.setText(movieElements.get(position).getFilmTitel());
         Picasso.get()
                 .load(movieElements.get(position).getImageUrlW200())
                 .into(holder.img_Cover);
         holder.releasedate.setText(movieElements.get(position).getDate().substring(0,4));
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, MovieActivity.class);
+                intent.putExtra("ELEMENT", movieElements.get(position));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
 
