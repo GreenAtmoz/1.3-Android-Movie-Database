@@ -13,11 +13,10 @@
         android:layout_height="match_parent">
 
         <ImageView
-
+            android:id="@+id/movieImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            tools:src="@drawable/cover3" />
+            android:adjustViewBounds="true"/>
 
     </LinearLayout>
 
@@ -76,7 +75,6 @@
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
             android:paddingRight="16dp"
-            android:text="AVANCED WARFARE"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -105,7 +103,6 @@
             android:paddingTop="48dp"
             android:paddingEnd="16dp"
             android:paddingRight="16dp"
-            android:text="2020"
             android:textColor="@color/grey"
             android:textSize="13sp"
             android:textStyle="bold" />
@@ -134,7 +131,6 @@
             android:paddingTop="80dp"
             android:paddingEnd="25dp"
             android:paddingRight="25dp"
-            android:text="An Avans horror story about three guys making a stupid application for an assignment. but what they didnt know was that all of it would soon come to a horrifying end."
             android:textColor="@color/darker_white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -163,7 +159,6 @@
             android:paddingTop="215dp"
             android:paddingEnd="16dp"
             android:paddingRight="16dp"
-            android:text="★ 9.1                                                                2h 21min"
             android:textColor="@color/darker_white"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -184,18 +179,15 @@
         </ImageView>
 
         <ImageView
+            android:id="@+id/trailerButton"
             android:layout_width="81dp"
-
             android:layout_height="79dp"
             android:layout_alignRight="@+id/whoop"
             android:layout_alignBottom="@+id/whoop"
-
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="28dp"
-            tools:srcCompat="@drawable/playbutton"
             android:layout_alignEnd="@+id/whoop">
-
         </ImageView>
 
     </RelativeLayout>
