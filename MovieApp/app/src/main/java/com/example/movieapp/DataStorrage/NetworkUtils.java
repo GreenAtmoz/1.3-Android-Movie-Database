@@ -3,14 +3,11 @@ package com.example.movieapp.DataStorrage;
 import android.util.Log;
 
 import com.example.movieapp.Language;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class NetworkUtils {
     private static final String mString_pictureUrlW500 = "https://image.tmdb.org/t/p/w500";
@@ -83,19 +80,28 @@ public class NetworkUtils {
     }
 
     public static URL buildRatingUrl(int page) throws Exception{
-        String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
+        String base = "https://api.themoviedb.org/3/movie/top_rated?api_key=";
         String pageAddon = "&page=";
-        URL output = new URL(base + apiKey + languageString + pageAddon + page);
-        Log.d("NetworkUtils", "buildRatingUrlString: " + output);
-        return output;
+        String output = base + apiKey + pageAddon + languageString + page;
+        Log.d("NetworkUtils", "buildSearchUrl: " + output);
+        return new URL(output);
     }
 
     public static URL buildExpectedUrl(int page) throws Exception{
-        String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
+        String base = "https://api.themoviedb.org/3/movie/upcoming?api_key=";
         String pageAddon = "&page=";
         URL output = new URL(base + apiKey + languageString + pageAddon + page);
         Log.d("NetworkUtils", "buildExpectedUrlString: " + output);
         return output;
+    }
+
+    public static URL buildSearchUrl(String search, int page) throws Exception{
+        String base = "https://api.themoviedb.org/3/search/movie?api_key=";
+        String query = "&query=";
+        String pageAddon = "&page=";
+        String output = base + apiKey + query + search + languageString + pageAddon + page;
+        Log.d("NetworkUtils", "buildSearchUrl: " + output);
+        return new URL(output);
     }
 
     public static void checkLanguage(){
@@ -105,16 +111,6 @@ public class NetworkUtils {
             languageString = Dutch;
         }
     }
-
-    public static URL buildSearchUrl(String search, int page) throws Exception{
-        String base = "https://api.themoviedb.org/3/search/movie?api_key=";
-        String query = "&query=";
-        String pageAddon = "&page=";
-        String output = base + apiKey + query + search + pageAddon + page;
-        Log.d(TAG, "buildSearchUrl: " + output);
-        return new URL(output);
-    }
-
 }
 
 
