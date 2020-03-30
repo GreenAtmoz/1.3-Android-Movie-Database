@@ -80,7 +80,7 @@ public class NetworkUtils {
         checkLanguage();
         String base = "https://api.themoviedb.org/3/movie/top_rated?api_key=";
         String pageAddon = "&page=";
-        String output = base + apiKey + pageAddon + languageString + page;
+        String output = base + apiKey + languageString + pageAddon + page;
         Log.d("NetworkUtils", "buildSearchUrl: " + output);
         return new URL(output);
     }
@@ -131,7 +131,7 @@ public class NetworkUtils {
     public static void checkLanguage(){
         if (Language.ENGLISH.equals(language)){
             languageString = English;
-        }else if (Language.NEDERLANDS.equals(language)){
+        } else if (Language.NEDERLANDS.equals(language)){
             languageString = Dutch;
         }
     }
