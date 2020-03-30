@@ -28,6 +28,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
     @Override
     public void onBindViewHolder(@NonNull ReviewAdapter.ReviewViewHolder holder, int position) {
         holder.fullname.setText(reviewElements.get(position));
+        holder.reviewcontent.setText(reviewElements.get(position));
+        holder.reviewrating.setText(reviewElements.get(position));
     }
 
     @Override
@@ -37,10 +39,14 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
 
     public class ReviewViewHolder extends RecyclerView.ViewHolder {
         public TextView fullname;
+        public TextView reviewcontent;
+        public TextView reviewrating;
 
         public ReviewViewHolder(@NonNull View itemView) {
             super(itemView);
             fullname = (TextView) itemView.findViewById(R.id.fullname);
+            reviewcontent = (TextView) itemView.findViewById(R.id.reviewcontent);
+            reviewrating = (TextView) itemView.findViewById(R.id.reviewrating);
         }
     }
 }
