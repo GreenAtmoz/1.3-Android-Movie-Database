@@ -29,6 +29,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/total"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -36,11 +37,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/topping"
+        <WebView
+            android:id="@+id/webview"
             android:layout_width="match_parent"
-            android:layout_height="480dp">
-        </ImageView>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="175dp"/>
 
         <ImageView
             android:layout_alignParentBottom="true"
@@ -119,13 +120,39 @@
 
         <ImageView
             android:id="@+id/trailerButton"
+            android:layout_marginRight="15dp"
             android:layout_width="67dp"
             android:layout_height="69dp"
             android:layout_marginTop="-40dp"
             android:layout_alignTop="@+id/testing"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true">
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp">
         </ImageView>
+        <ImageView
+            android:id="@+id/exittrailer"
+            android:layout_marginRight="15dp"
+            android:layout_width="67dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="-40dp"
+            android:layout_alignTop="@+id/testing"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="15dp">
+        </ImageView>
+        <ImageView
+            android:id="@+id/heart"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp">
+        </ImageView>
+
+
+
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
