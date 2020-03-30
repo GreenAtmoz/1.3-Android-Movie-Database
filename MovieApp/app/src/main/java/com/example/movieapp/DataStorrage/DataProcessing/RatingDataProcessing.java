@@ -21,7 +21,6 @@ public class RatingDataProcessing extends AsyncTask<String, Void, ArrayList<Movi
 
     @Override
     protected ArrayList<MovieElements> doInBackground(String... strings) {
-        NetworkUtils.checkLanguage();
         Log.d("Dataprocessing", "doInBackground");
         try {
             int page = 0;

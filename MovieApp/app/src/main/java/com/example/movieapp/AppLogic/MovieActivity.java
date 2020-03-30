@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.DataProcessing.Review;
 import com.example.movieapp.DataStorrage.TrailerLinkFinder;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
@@ -110,6 +111,10 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         trailerExit.setVisibility(View.VISIBLE);
         mTrailerButton.setEnabled(false);
         mTrailerButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void processArrayStringsFinish(ArrayList<Review> output) {
     }
 
     @Override

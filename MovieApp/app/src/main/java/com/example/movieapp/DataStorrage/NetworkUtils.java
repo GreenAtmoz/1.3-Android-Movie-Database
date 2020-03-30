@@ -58,6 +58,7 @@ public class NetworkUtils {
     }
 
     public static URL buildPopularUrl(int page) throws Exception{
+        checkLanguage();
         String base = "https://api.themoviedb.org/3/movie/popular?api_key=";
         String pageAddon = "&page=";
         URL output = new URL(base + apiKey + languageString + pageAddon + page);
@@ -66,6 +67,7 @@ public class NetworkUtils {
     }
 
     public static URL buildDateUrl(int page) throws Exception{
+        checkLanguage();
         String base = "https://api.themoviedb.org/3/discover/movie?api_key=";
         String pageAddon = "&page=";
         String sortBy = "&sort_by=primary_release_date.dsc";
@@ -75,6 +77,7 @@ public class NetworkUtils {
     }
 
     public static URL buildRatingUrl(int page) throws Exception{
+        checkLanguage();
         String base = "https://api.themoviedb.org/3/movie/top_rated?api_key=";
         String pageAddon = "&page=";
         String output = base + apiKey + pageAddon + languageString + page;
@@ -83,6 +86,7 @@ public class NetworkUtils {
     }
 
     public static URL buildExpectedUrl(int page) throws Exception{
+        checkLanguage();
         String base = "https://api.themoviedb.org/3/movie/upcoming?api_key=";
         String pageAddon = "&page=";
         URL output = new URL(base + apiKey + languageString + pageAddon + page);
@@ -91,12 +95,37 @@ public class NetworkUtils {
     }
 
     public static URL buildSearchUrl(String search, int page) throws Exception{
+        checkLanguage();
         String base = "https://api.themoviedb.org/3/search/movie?api_key=";
         String query = "&query=";
         String pageAddon = "&page=";
         String output = base + apiKey + query + search + languageString + pageAddon + page;
         Log.d("NetworkUtils", "buildSearchUrl: " + output);
         return new URL(output);
+    }
+
+    public static URL buildTrailerURL(int movieId) throws Exception{
+        checkLanguage();
+        String base = "http://api.themoviedb.org/3/movie/";
+        String query = "/videos?api_key=";
+        Log.d("TrailerLinkFinder", "getApiURLString: is called");
+        return new URL(base + movieId + query + apiKey + languageString);
+    }
+
+    public static String buildYoutubeUrlString(String videoKey) throws Exception{
+        String youtubeBaseUrl = "https://www.youtube.com/embed/";
+        String youtubeEndUrl = "?autoplay=1&vq=small";
+        Log.d("TrailerLinkFinder", "getYoutubeUrlString: is called");
+        return youtubeBaseUrl + videoKey + youtubeEndUrl;
+    }
+
+    public static URL buildReviewsUrl(int movieId, int page) throws Exception{
+        checkLanguage();
+        String base = "http://api.themoviedb.org/3/movie/";
+        String query = "/reviews?api_key=";
+        String pageAddon = "&page=";
+        Log.d("TrailerLinkFinder", "getReviewsUrl: is called");
+        return new URL(base + movieId + query + apiKey + languageString + pageAddon + page);
     }
 
     public static void checkLanguage(){
