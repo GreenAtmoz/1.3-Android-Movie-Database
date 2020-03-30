@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
@@ -156,5 +155,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, movieElements);
         myrv.setLayoutManager(new GridLayoutManager(this,3));
         myrv.setAdapter(myAdapter);
+    }
+
+    @Override
+    public void processStringFinish(String output) {
+
     }
 }
