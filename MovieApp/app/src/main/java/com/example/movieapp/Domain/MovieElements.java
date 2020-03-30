@@ -3,10 +3,9 @@ package com.example.movieapp.Domain;
 import java.io.Serializable;
 
 public class MovieElements implements Serializable {
-
     private String filmTitel;
     private String description;
-    private int rating;
+    private double rating;
     private String trailerLink;
     private String imageUrlW200;
     private String imageUrlW500;
@@ -40,7 +39,7 @@ public class MovieElements implements Serializable {
         this.description = description;
     }
 
-    public void setRating(int rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
@@ -56,7 +55,7 @@ public class MovieElements implements Serializable {
         return description;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 

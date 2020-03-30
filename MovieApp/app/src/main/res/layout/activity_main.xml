@@ -97,10 +97,30 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
-            android:paddingLeft="13dp"
             android:id="@+id/imageView3"
-            android:layout_width="39dp"
-            android:layout_height="38dp"
+            android:layout_width="56dp"
+            android:layout_height="49dp"
+            android:paddingStart="13dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             app:srcCompat="@drawable/mg" />
+
+        <EditText
+            android:id="@+id/EditText"
+            android:paddingStart="8dp"
+            android:paddingRight="8dp"
+            android:layout_width="250dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="11dp"
+            android:background="@drawable/roundedbackground"
+            android:gravity="top"
+            android:textColorHint="@color/darker_white"
+            android:hint="@string/enter_movie"
+            android:textColor="@color/darker_white"
+            android:paddingLeft="8dp">
+
+        </EditText>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
