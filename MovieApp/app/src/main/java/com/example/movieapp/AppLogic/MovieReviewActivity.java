@@ -1,17 +1,14 @@
 package com.example.movieapp.AppLogic;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.DataProcessing.AsyncResponse;
 import com.example.movieapp.DataStorrage.DataProcessing.ReviewsFinder;
-import com.example.movieapp.DataStorrage.Review;
+import com.example.movieapp.Domain.Review;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
-
 import java.util.ArrayList;
 
 public class MovieReviewActivity extends AppCompatActivity implements AsyncResponse {
@@ -33,7 +30,6 @@ public class MovieReviewActivity extends AppCompatActivity implements AsyncRespo
         ReviewsFinder reviewsFinder = new ReviewsFinder(movieElement.getId());
         reviewsFinder.asyncResponse = this;
         reviewsFinder.execute();
-
     }
 
     @Override
@@ -55,6 +51,4 @@ public class MovieReviewActivity extends AppCompatActivity implements AsyncRespo
     public void processStringFinish(String output) {
 
     }
-
-
 }
