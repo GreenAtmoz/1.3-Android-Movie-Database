@@ -25,13 +25,11 @@ public class TrailerLinkFinder extends AsyncTask<String, Void, String>{
             String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(getApiURL());
             JSONObject object = new JSONObject(jsonResponseString);
             JSONArray results = object.getJSONArray("results");
+            int i = 0;
             while (true) {
-                int i = 0;
                 JSONObject result = results.getJSONObject(i);
                 if ("Trailer".equals(result.getString("type"))) {
-                    Log.d("TrailerLinkFinder", "doInBackground: " + result.getString("type"));
                     youtubeVideoKey = result.getString("key");
-                    Log.d("TrailerLinkFinder", "doInBackground: " + youtubeVideoKey);
                     break;
                 } else {
                     i++;

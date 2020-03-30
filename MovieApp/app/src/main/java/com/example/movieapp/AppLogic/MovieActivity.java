@@ -1,6 +1,7 @@
 package com.example.movieapp.AppLogic;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,14 +10,16 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.TrailerLinkFinder;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
-public class MovieActivity extends AppCompatActivity implements AsyncResponse{
+public class MovieActivity extends AppCompatActivity implements AsyncResponse {
     private TextView mFilmTitel;
     private TextView mDescription;
     private ImageView mTrailerButton;
@@ -28,7 +31,6 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
     public ImageView trailerExit;
     private MovieElements movieElement;
     private String youtubeLink;
-    private boolean trailerLoaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +59,6 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
         Bundle extras = getIntent().getExtras();
         movieElement = (MovieElements) extras.getSerializable("ELEMENT");
 
-        TrailerLinkFinder trailerLinkFinder = new TrailerLinkFinder(movieElement.getId());
-        trailerLinkFinder.asyncResponse = MovieActivity.this;
-        trailerLinkFinder.execute();
 
         Picasso.get()
                 .load(movieElement.getImageUrlW500())
@@ -68,17 +67,9 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
         mTrailerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trailerLoaded) {
-                    webView.loadUrl(youtubeLink);
-                    webView.setVisibility(View.VISIBLE);
-                    webView.setEnabled(true);
-                    heart.setVisibility(View.GONE);
-                    heart.setEnabled(false);
-                    trailerExit.setEnabled(true);
-                    trailerExit.setVisibility(View.VISIBLE);
-                    mTrailerButton.setEnabled(false);
-                    mTrailerButton.setVisibility(View.GONE);
-                }
+                TrailerLinkFinder trailerLinkFinder = new TrailerLinkFinder(movieElement.getId());
+                trailerLinkFinder.asyncResponse = MovieActivity.this;
+                trailerLinkFinder.execute();
             }
         });
 
@@ -110,8 +101,15 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
     @Override
     public void processStringFinish(String output) {
         youtubeLink = output;
-        trailerLoaded = true;
-        Log.d("MovieActivity: ", "processStringFinish: " + youtubeLink);
+        webView.loadUrl(youtubeLink);
+        webView.setVisibility(View.VISIBLE);
+        webView.setEnabled(true);
+        heart.setVisibility(View.GONE);
+        heart.setEnabled(false);
+        trailerExit.setEnabled(true);
+        trailerExit.setVisibility(View.VISIBLE);
+        mTrailerButton.setEnabled(false);
+        mTrailerButton.setVisibility(View.GONE);
     }
 
     @Override
