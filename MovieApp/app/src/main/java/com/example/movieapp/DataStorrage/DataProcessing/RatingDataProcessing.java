@@ -8,7 +8,6 @@ import com.example.movieapp.Domain.MovieElements;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
-
 import static android.content.ContentValues.TAG;
 
 public class RatingDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
