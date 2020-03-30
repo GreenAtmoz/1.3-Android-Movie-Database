@@ -1,4 +1,4 @@
-package com.example.movieapp.DataStorrage.DataProcessing;
+package com.example.movieapp.DataStorrage;
 
 public class Review {
     private int movieId;
