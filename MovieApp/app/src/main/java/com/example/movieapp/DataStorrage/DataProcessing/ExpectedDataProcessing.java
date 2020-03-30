@@ -22,7 +22,6 @@ public class ExpectedDataProcessing extends AsyncTask<String, Void, ArrayList<Mo
 
     @Override
     protected ArrayList<MovieElements> doInBackground(String... strings) {
-        NetworkUtils.checkLanguage();
         Log.d("Dataprocessing", "doInBackground");
         try {
             int page = 0;

@@ -21,7 +21,6 @@ public class DateDataProcessing extends AsyncTask<String, Void, ArrayList<MovieE
 
     @Override
     protected ArrayList<MovieElements> doInBackground(String... strings) {
-        NetworkUtils.checkLanguage();
         Log.d("DateDataprocessing", "doInBackground");
         try {
             int page = 0;
