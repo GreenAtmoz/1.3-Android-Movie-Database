@@ -19,6 +19,7 @@ public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElemen
 
     @Override
     protected ArrayList<MovieElements> doInBackground(String... strings) {
+        NetworkUtils.checkLanguage();
         Log.d("Dataprocessing", "doInBackground");
         try {
                 int page = 0;
@@ -54,7 +55,7 @@ public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElemen
                         String date;
                         if (result.isNull("release_date")){
                             date = "null";
-                        } else {
+                        }else{
                             date = result.getString("release_date");
                         }
                         if (date.isEmpty()){
@@ -62,7 +63,6 @@ public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElemen
                         }
                         element.setDate(date);
                         movieElements.add(element);
-//                        Log.d("MovieSearcher", "doInBackground: Title:" + element.getFilmTitel());
                     }
                 }
         } catch (Exception e) {

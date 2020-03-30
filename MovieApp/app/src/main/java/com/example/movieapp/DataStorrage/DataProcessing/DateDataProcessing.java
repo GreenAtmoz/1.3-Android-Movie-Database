@@ -62,7 +62,6 @@ public class DateDataProcessing extends AsyncTask<String, Void, ArrayList<MovieE
                         if (date.isEmpty()){
                             date = "null";
                         }
-//                        date = "testing";
                         element.setDate(date);
                         movieElements.add(element);
                         Log.d("PopularDataProcessing", "doInBackground: Title:" + element.getFilmTitel());

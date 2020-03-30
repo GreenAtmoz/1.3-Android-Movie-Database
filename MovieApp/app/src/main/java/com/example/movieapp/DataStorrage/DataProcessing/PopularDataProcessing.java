@@ -8,7 +8,7 @@ import com.example.movieapp.Domain.MovieElements;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import static android.content.ContentValues.TAG;
+
 
 public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
     public AsyncResponse asyncResponse = null;
@@ -54,8 +54,11 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
                     String date;
                     if (result.isNull("release_date")){
                         date = "null";
-                    }else {
+                    }else{
                         date = result.getString("release_date");
+                    }
+                    if (date.isEmpty()){
+                        date = "null";
                     }
                     element.setDate(date);
                     movieElements.add(element);
@@ -71,6 +74,6 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
     @Override
     protected void onPostExecute(ArrayList<MovieElements> decorativeElements) {
         asyncResponse.processFinish(decorativeElements);
-        Log.d(TAG, "onPostExecute: " + movieElements);
+        Log.d("PopularDataProcessing", "onPostExecute: " + movieElements);
     }
 }
