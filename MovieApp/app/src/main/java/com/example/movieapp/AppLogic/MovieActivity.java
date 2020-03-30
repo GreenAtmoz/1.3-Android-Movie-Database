@@ -1,22 +1,27 @@
 package com.example.movieapp.AppLogic;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.Review;
 import com.example.movieapp.DataStorrage.TrailerLinkFinder;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
-public class MovieActivity extends AppCompatActivity implements AsyncResponse{
+public class MovieActivity extends AppCompatActivity implements AsyncResponse {
     private TextView mFilmTitel;
     private TextView mDescription;
     private ImageView mTrailerButton;
@@ -28,7 +33,7 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
     public ImageView trailerExit;
     private MovieElements movieElement;
     private String youtubeLink;
-    private boolean trailerLoaded = false;
+    private TextView reviewActivityButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
         mRating = (TextView) findViewById(R.id.rating);
         mDate = (TextView) findViewById(R.id.filmdata);
         heart = (ImageView) findViewById(R.id.heart);
+        reviewActivityButton = (TextView) findViewById(R.id.reviewButton);
 
         webView = (WebView) findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());
@@ -57,9 +63,6 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
         Bundle extras = getIntent().getExtras();
         movieElement = (MovieElements) extras.getSerializable("ELEMENT");
 
-        TrailerLinkFinder trailerLinkFinder = new TrailerLinkFinder(movieElement.getId());
-        trailerLinkFinder.asyncResponse = MovieActivity.this;
-        trailerLinkFinder.execute();
 
         Picasso.get()
                 .load(movieElement.getImageUrlW500())
@@ -68,17 +71,9 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
         mTrailerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (trailerLoaded) {
-                    webView.loadUrl(youtubeLink);
-                    webView.setVisibility(View.VISIBLE);
-                    webView.setEnabled(true);
-                    heart.setVisibility(View.GONE);
-                    heart.setEnabled(false);
-                    trailerExit.setEnabled(true);
-                    trailerExit.setVisibility(View.VISIBLE);
-                    mTrailerButton.setEnabled(false);
-                    mTrailerButton.setVisibility(View.GONE);
-                }
+                TrailerLinkFinder trailerLinkFinder = new TrailerLinkFinder(movieElement.getId());
+                trailerLinkFinder.asyncResponse = MovieActivity.this;
+                trailerLinkFinder.execute();
             }
         });
 
@@ -96,6 +91,16 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
                 mTrailerButton.setVisibility(View.VISIBLE);
             }
         });
+
+        reviewActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MovieActivity.this, MovieReviewActivity.class);
+                intent.putExtra("ELEMENT", movieElement);
+                MovieActivity.this.startActivity(intent);
+            }
+        });
+
         trailerExit.setImageResource(R.drawable.exit);
         mTrailerButton.setImageResource(R.drawable.playbutton);
         heart.setImageResource(R.drawable.heart);
@@ -105,13 +110,27 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse{
         mRating.setText("★ " + movieElement.getRating());
         mDate.setText(movieElement.getDate());
         mDate.setText(movieElement.getDate());
+
+
     }
+
 
     @Override
     public void processStringFinish(String output) {
         youtubeLink = output;
-        trailerLoaded = true;
-        Log.d("MovieActivity: ", "processStringFinish: " + youtubeLink);
+        webView.loadUrl(youtubeLink);
+        webView.setVisibility(View.VISIBLE);
+        webView.setEnabled(true);
+        heart.setVisibility(View.GONE);
+        heart.setEnabled(false);
+        trailerExit.setEnabled(true);
+        trailerExit.setVisibility(View.VISIBLE);
+        mTrailerButton.setEnabled(false);
+        mTrailerButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void processArrayStringsFinish(ArrayList<Review> output) {
     }
 
     @Override
