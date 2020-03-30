@@ -21,7 +21,6 @@ public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<Mov
 
     @Override
     protected ArrayList<MovieElements> doInBackground(String... strings) {
-        NetworkUtils.checkLanguage();
         Log.d("PopularDataprocessing", "doInBackground");
         try {
             int page = 0;
