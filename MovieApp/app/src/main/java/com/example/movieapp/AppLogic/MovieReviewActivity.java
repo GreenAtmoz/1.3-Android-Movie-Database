@@ -6,17 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.DataProcessing.ReviewsFinder;
+import com.example.movieapp.DataStorrage.Review;
 import com.example.movieapp.Domain.MovieElements;
-import com.example.movieapp.Domain.ReviewElements;
 import com.example.movieapp.R;
 
 import java.util.ArrayList;
 
-public class MovieReviewActivity extends AppCompatActivity {
+public class MovieReviewActivity extends AppCompatActivity implements AsyncResponse {
     private RecyclerView reviewRecylerview;
     private RecyclerView.LayoutManager reviewLayoutManager;
     private RecyclerView.Adapter reviewAdapter;
-    private ArrayList<String> reviewElements;
+    private ArrayList<Review> reviews;
     private MovieElements movieElement;
 
     @Override
@@ -24,23 +26,35 @@ public class MovieReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.review_movie);
 
-        reviewElements = new ArrayList<>();
-        reviewElements.add("hoeren");
-        reviewElements.add("neuken");
-        reviewElements.add("nooit");
-        reviewElements.add("meer");
-        reviewElements.add("werken");
-
         Bundle extras = getIntent().getExtras();
         movieElement = (MovieElements) extras.getSerializable("ELEMENT");
 
-        reviewRecylerview = (RecyclerView) findViewById(R.id.reviewrecyclerview);
-        reviewLayoutManager = new LinearLayoutManager(this);
-        reviewAdapter = new ReviewAdapter(reviewElements);
-        reviewRecylerview.setLayoutManager(reviewLayoutManager);
-        reviewRecylerview.setAdapter(reviewAdapter);
-
-
+        reviews = new ArrayList<>();
+        ReviewsFinder reviewsFinder = new ReviewsFinder(movieElement.getId());
+        reviewsFinder.asyncResponse = this;
+        reviewsFinder.execute();
 
     }
+
+    @Override
+    public void processArrayStringsFinish(ArrayList<Review> output) {
+        reviews = output;
+        reviewRecylerview = (RecyclerView) findViewById(R.id.reviewrecyclerview);
+        reviewLayoutManager = new LinearLayoutManager(this);
+        reviewAdapter = new ReviewAdapter(reviews);
+        reviewRecylerview.setLayoutManager(reviewLayoutManager);
+        reviewRecylerview.setAdapter(reviewAdapter);
+    }
+
+    @Override
+    public void processFinish(ArrayList<MovieElements> output) {
+
+    }
+
+    @Override
+    public void processStringFinish(String output) {
+
+    }
+
+
 }
