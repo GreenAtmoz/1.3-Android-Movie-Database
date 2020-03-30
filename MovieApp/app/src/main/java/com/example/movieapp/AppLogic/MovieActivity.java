@@ -1,24 +1,22 @@
 package com.example.movieapp.AppLogic;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.VideoView;
-
+import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.TrailerLinkFinder;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
 
-public class MovieActivity extends AppCompatActivity {
+public class MovieActivity extends AppCompatActivity implements AsyncResponse{
     private TextView mFilmTitel;
     private TextView mDescription;
     private ImageView mTrailerButton;
@@ -28,6 +26,9 @@ public class MovieActivity extends AppCompatActivity {
     public ImageView heart;
     WebView webView;
     public ImageView trailerExit;
+    private MovieElements movieElement;
+    private String youtubeLink;
+    private boolean trailerLoaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,7 @@ public class MovieActivity extends AppCompatActivity {
 
         webView = (WebView) findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://www.youtube.com/embed/hkfbg-sHwDo?autoplay=1&vq=small");
-        WebSettings webSettings = webView.getSettings();
+        final WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.setEnabled(false);
         webView.setVisibility(View.GONE);
@@ -55,7 +55,11 @@ public class MovieActivity extends AppCompatActivity {
         trailerExit.setVisibility(View.GONE);
 
         Bundle extras = getIntent().getExtras();
-        final MovieElements movieElement = (MovieElements) extras.getSerializable("ELEMENT");
+        movieElement = (MovieElements) extras.getSerializable("ELEMENT");
+
+        TrailerLinkFinder trailerLinkFinder = new TrailerLinkFinder(movieElement.getId());
+        trailerLinkFinder.asyncResponse = MovieActivity.this;
+        trailerLinkFinder.execute();
 
         Picasso.get()
                 .load(movieElement.getImageUrlW500())
@@ -64,14 +68,17 @@ public class MovieActivity extends AppCompatActivity {
         mTrailerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                webView.setVisibility(View.VISIBLE);
-                webView.setEnabled(true);
-                heart.setVisibility(View.GONE);
-                heart.setEnabled(false);
-                trailerExit.setEnabled(true);
-                trailerExit.setVisibility(View.VISIBLE);
-                mTrailerButton.setEnabled(false);
-                mTrailerButton.setVisibility(View.GONE);
+                if (trailerLoaded) {
+                    webView.loadUrl(youtubeLink);
+                    webView.setVisibility(View.VISIBLE);
+                    webView.setEnabled(true);
+                    heart.setVisibility(View.GONE);
+                    heart.setEnabled(false);
+                    trailerExit.setEnabled(true);
+                    trailerExit.setVisibility(View.VISIBLE);
+                    mTrailerButton.setEnabled(false);
+                    mTrailerButton.setVisibility(View.GONE);
+                }
             }
         });
 
@@ -80,7 +87,7 @@ public class MovieActivity extends AppCompatActivity {
             public void onClick(View v) {
                 webView.setVisibility(View.GONE);
                 webView.setEnabled(false);
-                webView.loadUrl("https://www.youtube.com/embed/hkfbg-sHwDo?autoplay=1&vq=small");
+                webView.loadUrl(youtubeLink);
                 heart.setVisibility(View.VISIBLE);
                 heart.setEnabled(true);
                 trailerExit.setEnabled(false);
@@ -98,5 +105,16 @@ public class MovieActivity extends AppCompatActivity {
         mRating.setText("★ " + movieElement.getRating());
         mDate.setText(movieElement.getDate());
         mDate.setText(movieElement.getDate());
+    }
+
+    @Override
+    public void processStringFinish(String output) {
+        youtubeLink = output;
+        trailerLoaded = true;
+        Log.d("MovieActivity: ", "processStringFinish: " + youtubeLink);
+    }
+
+    @Override
+    public void processFinish(ArrayList<MovieElements> output) {
     }
 }

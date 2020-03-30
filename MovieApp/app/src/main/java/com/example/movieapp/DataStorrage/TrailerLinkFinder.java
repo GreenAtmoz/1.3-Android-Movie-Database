@@ -11,12 +11,12 @@ public class TrailerLinkFinder extends AsyncTask<String, Void, String>{
     private int movieId;
     private static final String startUrl = "http://api.themoviedb.org/3/movie/";
     private static final String endUrl = "/videos?api_key=";
-    private static final String youtubeBaseUrl = "https://www.youtube.com/watch?v=";
+    private static final String youtubeBaseUrl = "https://www.youtube.com/embed/";
+    private static final String youtubeEndUrl = "?autoplay=1&vq=small";
 
     public TrailerLinkFinder(int movieId) {
         this.movieId = movieId;
     }
-
     @Override
     protected String doInBackground(String... strings) {
         String outputLink = "";
@@ -25,15 +25,15 @@ public class TrailerLinkFinder extends AsyncTask<String, Void, String>{
             String jsonResponseString = NetworkUtils.getResponseFromHttpUrl(getApiURL());
             JSONObject object = new JSONObject(jsonResponseString);
             JSONArray results = object.getJSONArray("results");
-            while (true){
+            while (true) {
                 int i = 0;
                 JSONObject result = results.getJSONObject(i);
-                if ("trailer".equals(result.getString("type"))){
+                if ("Trailer".equals(result.getString("type"))) {
                     Log.d("TrailerLinkFinder", "doInBackground: " + result.getString("type"));
                     youtubeVideoKey = result.getString("key");
                     Log.d("TrailerLinkFinder", "doInBackground: " + youtubeVideoKey);
                     break;
-                }else {
+                } else {
                     i++;
                 }
             }
@@ -41,6 +41,7 @@ public class TrailerLinkFinder extends AsyncTask<String, Void, String>{
         }catch (Exception e){
             e.printStackTrace();
         }
+        Log.d("TrailerLinkFinder", "doInBackground: " + outputLink);
         return outputLink;
     }
 
@@ -51,6 +52,11 @@ public class TrailerLinkFinder extends AsyncTask<String, Void, String>{
 
     public String getYoutubeUrlString(String videoKey) throws Exception{
         Log.d("TrailerLinkFinder", "getYoutubeUrlString: is called");
-        return youtubeBaseUrl + videoKey;
+        return youtubeBaseUrl + videoKey + youtubeEndUrl;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        asyncResponse.processStringFinish(s);
     }
 }
