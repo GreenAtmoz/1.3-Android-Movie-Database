@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 
 import com.example.movieapp.DataStorrage.AsyncResponse;
 import com.example.movieapp.DataStorrage.NetworkUtils;
+import com.example.movieapp.DataStorrage.Review;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

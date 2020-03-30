@@ -18,7 +18,7 @@ import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.ExpectedDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.PopularDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.RatingDataProcessing;
-import com.example.movieapp.DataStorrage.DataProcessing.Review;
+import com.example.movieapp.DataStorrage.Review;
 import com.example.movieapp.DataStorrage.MovieSearcher;
 import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;

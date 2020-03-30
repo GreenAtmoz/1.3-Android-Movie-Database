@@ -3,7 +3,6 @@ package com.example.movieapp.AppLogic;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -12,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.movieapp.DataStorrage.AsyncResponse;
-import com.example.movieapp.DataStorrage.DataProcessing.Review;
+import com.example.movieapp.DataStorrage.Review;
 import com.example.movieapp.DataStorrage.TrailerLinkFinder;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
