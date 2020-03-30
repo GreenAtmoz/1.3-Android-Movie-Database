@@ -18,6 +18,7 @@ import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.ExpectedDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.PopularDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.RatingDataProcessing;
+import com.example.movieapp.DataStorrage.DataProcessing.Review;
 import com.example.movieapp.DataStorrage.MovieSearcher;
 import com.example.movieapp.DataStorrage.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
@@ -159,6 +160,11 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
     @Override
     public void processStringFinish(String output) {
+
+    }
+
+    @Override
+    public void processArrayStringsFinish(ArrayList<Review> output) {
 
     }
 }
