@@ -2,6 +2,8 @@ package com.example.movieapp.AppLogic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -31,6 +33,7 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
     public ImageView trailerExit;
     private MovieElements movieElement;
     private String youtubeLink;
+    private TextView reviewActivityButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         mRating = (TextView) findViewById(R.id.rating);
         mDate = (TextView) findViewById(R.id.filmdata);
         heart = (ImageView) findViewById(R.id.heart);
+        reviewActivityButton = (TextView) findViewById(R.id.reviewButton);
 
         webView = (WebView) findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());
@@ -87,6 +91,16 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
                 mTrailerButton.setVisibility(View.VISIBLE);
             }
         });
+
+        reviewActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MovieActivity.this, MovieReviewActivity.class);
+                intent.putExtra("ELEMENT", movieElement);
+                MovieActivity.this.startActivity(intent);
+            }
+        });
+
         trailerExit.setImageResource(R.drawable.exit);
         mTrailerButton.setImageResource(R.drawable.playbutton);
         heart.setImageResource(R.drawable.heart);
@@ -96,7 +110,10 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         mRating.setText("★ " + movieElement.getRating());
         mDate.setText(movieElement.getDate());
         mDate.setText(movieElement.getDate());
+
+
     }
+
 
     @Override
     public void processStringFinish(String output) {
