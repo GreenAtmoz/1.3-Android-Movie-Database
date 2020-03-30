@@ -3,5 +3,14 @@
     <string name="date">DATE</string>
     <string name="rating">Rating</string>
     <string name="expected">Expected</string>
-    <string name="all">All</string>
+    <string name="all">POPULAR</string>
+    <string name="plaatje_d">plaatje :D</string>
+    <string name="_2020">dingetje</string>
+    <string name="hele_hoop_text">zooi tyuguyguykfuyfuyfkufukyfyfy</string>
+    <string name="enter_movie">Enter Movie</string>
+    <string name="write_review">WRITE REVIEW</string>
+    <string name="reviews">REVIEWS</string>
+    <string name="submit_review">Submit review</string>
+    <string name="ReviewRating">Rating ★</string>
+    <string name="_0_0">0.0</string>
 </resources>
