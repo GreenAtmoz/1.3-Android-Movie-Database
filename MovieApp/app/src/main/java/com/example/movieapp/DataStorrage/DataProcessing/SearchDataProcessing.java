@@ -8,12 +8,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class MovieSearcher extends AsyncTask<String, Void, ArrayList<MovieElements>> {
+public class SearchDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
     public AsyncResponse asyncResponse = null;
     private ArrayList<MovieElements> movieElements;
     private String search;
 
-    public MovieSearcher(ArrayList<MovieElements> movieElements, String search) {
+    public SearchDataProcessing(ArrayList<MovieElements> movieElements, String search) {
         this.movieElements = movieElements;
         this.search = search;
     }
