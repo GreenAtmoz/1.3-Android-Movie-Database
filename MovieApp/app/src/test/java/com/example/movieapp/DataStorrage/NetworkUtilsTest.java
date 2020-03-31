@@ -25,6 +25,25 @@ class NetworkUtilsTest {
 //
 //        assertEquals(expected, result);
 //    }
+    
+    //Images
+    @Test
+    void testBuildImageUrlW500() throws Exception {
+        final URL baseURLEnglish = new URL("https://image.tmdb.org/t/p/w500poster_path");
+
+        URL apiBuild = new URL(NetworkUtils.buildImageUrlW500("poster_path"));
+
+        assertEquals(baseURLEnglish, apiBuild);
+    }
+
+    @Test
+    void testBuildImageUrlW200() throws Exception {
+        final URL baseURLEnglish = new URL("https://image.tmdb.org/t/p/w200poster_path");
+
+        URL apiBuild = new URL(NetworkUtils.buildImageUrlW200("poster_path"));
+
+        assertEquals(baseURLEnglish, apiBuild);
+    }
 
     //Popular
     @Test
