@@ -1,4 +1,4 @@
-package com.example.movieapp;
+package com.example.movieapp.Domain;
 
 public enum Language {
     NEDERLANDS,

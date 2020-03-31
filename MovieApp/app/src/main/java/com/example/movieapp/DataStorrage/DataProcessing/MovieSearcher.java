@@ -1,7 +1,8 @@
-package com.example.movieapp.DataStorrage;
+package com.example.movieapp.DataStorrage.DataProcessing;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -6,7 +6,6 @@ public class MovieElements implements Serializable {
     private String filmTitel;
     private String description;
     private double rating;
-    private String trailerLink;
     private String imageUrlW200;
     private String imageUrlW500;
     private String date;
@@ -43,10 +42,6 @@ public class MovieElements implements Serializable {
         this.rating = rating;
     }
 
-    public void setTrailerLink(String trailerLink) {
-        this.trailerLink = trailerLink;
-    }
-
     public String getFilmTitel() {
         return filmTitel;
     }
@@ -57,10 +52,6 @@ public class MovieElements implements Serializable {
 
     public double getRating() {
         return rating;
-    }
-
-    public String getTrailerLink() {
-        return trailerLink;
     }
 
     public String getImageUrlW200() {

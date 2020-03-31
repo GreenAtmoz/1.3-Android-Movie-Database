@@ -1,17 +1,9 @@
 package com.example.movieapp.DataStorrage;
 
-import com.example.movieapp.Language;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
+import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
+import com.example.movieapp.Domain.Language;
+import org.junit.jupiter.api.Test;;
 import java.net.URL;
-
-import static com.example.movieapp.DataStorrage.NetworkUtils.checkLanguage;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NetworkUtilsTest {
