@@ -14,4 +14,5 @@
     <color name="darker_grey">#2D2D2D</color>
     <color name="darker_orange">#CC8400</color>
     <color name="playbuttongreen">#2ecd9f</color>
+    <color name="reviewgrey">#2b2e2e</color>
 </resources>
