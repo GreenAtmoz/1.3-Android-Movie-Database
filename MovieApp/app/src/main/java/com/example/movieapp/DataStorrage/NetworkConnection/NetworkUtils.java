@@ -50,7 +50,7 @@ public class NetworkUtils {
     public static String buildImageUrlW200(String inputPath) {
         String mUrl = null;
         try {
-            mUrl = new String(mString_pictureUrlW200 + inputPath);
+            mUrl = mString_pictureUrlW200 + inputPath;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,7 +80,7 @@ public class NetworkUtils {
         checkLanguage();
         String base = "https://api.themoviedb.org/3/movie/top_rated?api_key=";
         String pageAddon = "&page=";
-        String output = base + apiKey + pageAddon + languageString + page;
+        String output = base + apiKey + languageString + pageAddon + page;
         Log.d("NetworkUtils", "buildSearchUrl: " + output);
         return new URL(output);
     }
@@ -112,6 +112,13 @@ public class NetworkUtils {
         return new URL(base + movieId + query + apiKey + languageString);
     }
 
+    public static String buildYoutubeUrlString(String videoKey) throws Exception{
+        String youtubeBaseUrl = "https://www.youtube.com/embed/";
+        String youtubeEndUrl = "?autoplay=1&vq=small";
+        Log.d("TrailerLinkFinder", "getYoutubeUrlString: is called");
+        return youtubeBaseUrl + videoKey + youtubeEndUrl;
+    }
+
     public static URL buildReviewsUrl(int movieId, int page) throws Exception{
         checkLanguage();
         String base = "http://api.themoviedb.org/3/movie/";
@@ -121,21 +128,12 @@ public class NetworkUtils {
         return new URL(base + movieId + query + apiKey + languageString + pageAddon + page);
     }
 
-    public static String buildYoutubeUrlString(String videoKey) throws Exception{
-        String youtubeBaseUrl = "https://www.youtube.com/embed/";
-        String youtubeEndUrl = "?autoplay=1&vq=small";
-        Log.d("TrailerLinkFinder", "getYoutubeUrlString: is called");
-        return youtubeBaseUrl + videoKey + youtubeEndUrl;
-    }
-
     public static void checkLanguage(){
         if (Language.ENGLISH.equals(language)){
             languageString = English;
-        }else if (Language.NEDERLANDS.equals(language)){
+        } else if (Language.NEDERLANDS.equals(language)){
             languageString = Dutch;
         }
     }
 }
-
-
 

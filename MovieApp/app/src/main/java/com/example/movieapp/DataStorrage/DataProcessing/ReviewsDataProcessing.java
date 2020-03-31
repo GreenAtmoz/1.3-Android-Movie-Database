@@ -7,11 +7,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class ReviewsFinder extends AsyncTask<String, Void, ArrayList<Review>> {
+public class ReviewsDataProcessing extends AsyncTask<String, Void, ArrayList<Review>> {
     public AsyncResponse asyncResponse = null;
     private int movieId;
 
-    public ReviewsFinder(int movieId) {
+    public ReviewsDataProcessing(int movieId) {
         this.movieId = movieId;
     }
 

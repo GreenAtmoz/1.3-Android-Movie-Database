@@ -6,11 +6,11 @@ import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class TrailerLinkFinder extends AsyncTask<String, Void, String>{
+public class TrailerDataProcessing extends AsyncTask<String, Void, String>{
     public AsyncResponse asyncResponse = null;
     private int movieId;
 
-    public TrailerLinkFinder(int movieId) {
+    public TrailerDataProcessing(int movieId) {
         this.movieId = movieId;
     }
     @Override

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.movieapp.DataStorrage.DataProcessing.AsyncResponse;
 import com.example.movieapp.Domain.Review;
-import com.example.movieapp.DataStorrage.DataProcessing.TrailerLinkFinder;
+import com.example.movieapp.DataStorrage.DataProcessing.TrailerDataProcessing;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
@@ -66,7 +66,7 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         mTrailerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TrailerLinkFinder trailerLinkFinder = new TrailerLinkFinder(movieElement.getId());
+                TrailerDataProcessing trailerLinkFinder = new TrailerDataProcessing(movieElement.getId());
                 trailerLinkFinder.asyncResponse = MovieActivity.this;
                 trailerLinkFinder.execute();
             }
