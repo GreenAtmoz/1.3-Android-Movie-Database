@@ -1,15 +1,16 @@
-package com.example.movieapp.DataStorrage;
+package com.example.movieapp.DataStorrage.DataProcessing;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class TrailerLinkFinder extends AsyncTask<String, Void, String>{
+public class TrailerDataProcessing extends AsyncTask<String, Void, String>{
     public AsyncResponse asyncResponse = null;
     private int movieId;
 
-    public TrailerLinkFinder(int movieId) {
+    public TrailerDataProcessing(int movieId) {
         this.movieId = movieId;
     }
     @Override

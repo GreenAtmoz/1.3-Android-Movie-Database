@@ -1,18 +1,17 @@
 package com.example.movieapp.DataStorrage.DataProcessing;//package com.example.movieapp.DataStorrage.DataProcessing;
 
 import android.os.AsyncTask;
-import com.example.movieapp.DataStorrage.AsyncResponse;
-import com.example.movieapp.DataStorrage.NetworkUtils;
-import com.example.movieapp.DataStorrage.Review;
+import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
+import com.example.movieapp.Domain.Review;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-public class ReviewsFinder extends AsyncTask<String, Void, ArrayList<Review>> {
+public class ReviewsDataProcessing extends AsyncTask<String, Void, ArrayList<Review>> {
     public AsyncResponse asyncResponse = null;
     private int movieId;
 
-    public ReviewsFinder(int movieId) {
+    public ReviewsDataProcessing(int movieId) {
         this.movieId = movieId;
     }
 
@@ -50,7 +49,6 @@ public class ReviewsFinder extends AsyncTask<String, Void, ArrayList<Review>> {
                             reviewId = "null";
                         } else {
                             reviewId = result.getString("id");
-
                         }
                         Review review = new Review(author, content, movieId, reviewId);
                         output.add(review);

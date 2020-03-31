@@ -2,13 +2,11 @@ package com.example.movieapp.DataStorrage.DataProcessing;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import com.example.movieapp.DataStorrage.AsyncResponse;
-import com.example.movieapp.DataStorrage.NetworkUtils;
+import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
 import com.example.movieapp.Domain.MovieElements;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
-
 
 public class PopularDataProcessing extends AsyncTask<String, Void, ArrayList<MovieElements>> {
     public AsyncResponse asyncResponse = null;

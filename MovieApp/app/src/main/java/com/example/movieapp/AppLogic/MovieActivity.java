@@ -1,8 +1,6 @@
 package com.example.movieapp.AppLogic;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,14 +9,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.movieapp.DataStorrage.AsyncResponse;
-import com.example.movieapp.DataStorrage.Review;
-import com.example.movieapp.DataStorrage.TrailerLinkFinder;
+import com.example.movieapp.DataStorrage.DataProcessing.AsyncResponse;
+import com.example.movieapp.Domain.Review;
+import com.example.movieapp.DataStorrage.DataProcessing.TrailerDataProcessing;
 import com.example.movieapp.Domain.MovieElements;
 import com.example.movieapp.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 public class MovieActivity extends AppCompatActivity implements AsyncResponse {
@@ -63,7 +59,6 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         Bundle extras = getIntent().getExtras();
         movieElement = (MovieElements) extras.getSerializable("ELEMENT");
 
-
         Picasso.get()
                 .load(movieElement.getImageUrlW500())
                 .into(mImage);
@@ -71,7 +66,7 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         mTrailerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TrailerLinkFinder trailerLinkFinder = new TrailerLinkFinder(movieElement.getId());
+                TrailerDataProcessing trailerLinkFinder = new TrailerDataProcessing(movieElement.getId());
                 trailerLinkFinder.asyncResponse = MovieActivity.this;
                 trailerLinkFinder.execute();
             }
@@ -110,8 +105,6 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         mRating.setText("★ " + movieElement.getRating());
         mDate.setText(movieElement.getDate());
         mDate.setText(movieElement.getDate());
-
-
     }
 
 

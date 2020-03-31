@@ -13,14 +13,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
-import com.example.movieapp.DataStorrage.AsyncResponse;
+import com.example.movieapp.DataStorrage.DataProcessing.AsyncResponse;
 import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.ExpectedDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.PopularDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.RatingDataProcessing;
-import com.example.movieapp.DataStorrage.Review;
-import com.example.movieapp.DataStorrage.MovieSearcher;
-import com.example.movieapp.DataStorrage.NetworkUtils;
+import com.example.movieapp.Domain.Review;
+import com.example.movieapp.DataStorrage.DataProcessing.SearchDataProcessing;
+import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
+import com.example.movieapp.Domain.Language;
 import com.example.movieapp.Domain.MovieElements;
 import java.util.ArrayList;
 
@@ -51,11 +52,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                         if (actionId == EditorInfo.IME_NULL
                                 && event.getAction() == KeyEvent.ACTION_DOWN &&
                                     event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                            //TODO RIK ZET HIER DE METHOD DIE JE WIL RUNNEN OM DE ZOEKFUNCTIE IN TE LADEN
                             movieElements = new ArrayList<>();
-                            MovieSearcher movieSearcher = new MovieSearcher(movieElements, String.valueOf(EditText.getText()) );
-                            movieSearcher.asyncResponse = MainActivity.this;
-                            movieSearcher.execute();
+                            SearchDataProcessing searchDataProcessing = new SearchDataProcessing(movieElements, String.valueOf(EditText.getText()) );
+                            searchDataProcessing.asyncResponse = MainActivity.this;
+                            searchDataProcessing.execute();
                         }
                         return true;
                     }
