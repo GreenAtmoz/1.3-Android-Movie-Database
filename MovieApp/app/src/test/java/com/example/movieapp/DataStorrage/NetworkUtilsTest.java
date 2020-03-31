@@ -1,6 +1,7 @@
 package com.example.movieapp.DataStorrage;
 
-import com.example.movieapp.Language;
+import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
+import com.example.movieapp.Domain.Language;
 
 import org.json.JSONArray;
 import org.json.JSONException;
