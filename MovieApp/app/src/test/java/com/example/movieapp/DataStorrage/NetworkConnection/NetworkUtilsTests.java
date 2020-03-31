@@ -1,4 +1,4 @@
-package com.example.movieapp.DataStorrage;
+package com.example.movieapp.DataStorrage.NetworkConnection;
 
 import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
 import com.example.movieapp.Domain.Language;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;;
 import java.net.URL;
 import static org.junit.jupiter.api.Assertions.*;
 
-class NetworkUtilsTest {
+class NetworkUtilsTests {
     //HTTPURL Test
 //    @Test
 //    void testHTTPURL() throws IOException, JSONException {
@@ -25,7 +25,7 @@ class NetworkUtilsTest {
 //
 //        assertEquals(expected, result);
 //    }
-    
+
     //Images
     @Test
     void testBuildImageUrlW500() throws Exception {
