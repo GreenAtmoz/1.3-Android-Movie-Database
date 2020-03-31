@@ -19,7 +19,7 @@ import com.example.movieapp.DataStorrage.DataProcessing.ExpectedDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.PopularDataProcessing;
 import com.example.movieapp.DataStorrage.DataProcessing.RatingDataProcessing;
 import com.example.movieapp.Domain.Review;
-import com.example.movieapp.DataStorrage.DataProcessing.MovieSearcher;
+import com.example.movieapp.DataStorrage.DataProcessing.SearchDataProcessing;
 import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
 import com.example.movieapp.Domain.Language;
 import com.example.movieapp.Domain.MovieElements;
@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                                 && event.getAction() == KeyEvent.ACTION_DOWN &&
                                     event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
                             movieElements = new ArrayList<>();
-                            MovieSearcher movieSearcher = new MovieSearcher(movieElements, String.valueOf(EditText.getText()) );
-                            movieSearcher.asyncResponse = MainActivity.this;
-                            movieSearcher.execute();
+                            SearchDataProcessing searchDataProcessing = new SearchDataProcessing(movieElements, String.valueOf(EditText.getText()) );
+                            searchDataProcessing.asyncResponse = MainActivity.this;
+                            searchDataProcessing.execute();
                         }
                         return true;
                     }
