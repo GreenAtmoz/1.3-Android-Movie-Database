@@ -37,8 +37,6 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
-       hideNavigationBar();
-
         mFilmTitel = (TextView) findViewById(R.id.myImageViewText);
         mDescription = (TextView) findViewById(R.id.filmdescription);
         mImage = (ImageView) findViewById(R.id.movieImage);
@@ -108,24 +106,6 @@ public class MovieActivity extends AppCompatActivity implements AsyncResponse {
         mRating.setText("★ " + movieElement.getRating());
         mDate.setText(movieElement.getDate());
         mDate.setText(movieElement.getDate());
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        hideNavigationBar();
-    }
-
-    private void hideNavigationBar() {
-        this.getWindow()
-                .getDecorView()
-                .setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
 
     @Override
