@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                         if (actionId == EditorInfo.IME_NULL
                                 && event.getAction() == KeyEvent.ACTION_DOWN &&
                                     event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                            //TODO RIK ZET HIER DE METHOD DIE JE WIL RUNNEN OM DE ZOEKFUNCTIE IN TE LADEN
                             movieElements = new ArrayList<>();
                             MovieSearcher movieSearcher = new MovieSearcher(movieElements, String.valueOf(EditText.getText()) );
                             movieSearcher.asyncResponse = MainActivity.this;
