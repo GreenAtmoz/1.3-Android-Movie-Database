@@ -4,13 +4,19 @@
     <string name="rating">Rating</string>
     <string name="expected">Expected</string>
     <string name="all">POPULAR</string>
-    <string name="plaatje_d">plaatje :D</string>
-    <string name="_2020">dingetje</string>
-    <string name="hele_hoop_text">zooi tyuguyguykfuyfuyfkufukyfyfy</string>
+    <string name="_2020" translatable="false">dingetje</string>
+    <string name="hele_hoop_text" translatable="false">zooi tyuguyguykfuyfuyfkufukyfyfy</string>
     <string name="enter_movie">Enter Movie</string>
-    <string name="write_review">WRITE REVIEW</string>
+    <string name="write_review">SHOW REVIEW</string>
     <string name="reviews">REVIEWS</string>
     <string name="submit_review">Submit review</string>
     <string name="ReviewRating">Rating ★</string>
     <string name="_0_0">0.0</string>
+    <string name="language">Language:</string>
+    <string name="night">Night</string>
+    <string name="dash">/</string>
+    <string name="english">English</string>
+    <string name="dutch">Dutch</string>
+    <string name="day">Day</string>
+    <string name="theme">Theme:</string>
 </resources>
