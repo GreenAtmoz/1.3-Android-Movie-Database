@@ -1,38 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp">
+        android:layout_margin="12dp"
+        app:cardBackgroundColor="@color/reviewgrey"
+        app:cardCornerRadius="20dp">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-    <TextView
 
-        android:textSize="16sp"
+    <TextView
+        android:textSize="20sp"
         android:id="@+id/fullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:textColor="@color/playbuttongreen"
+        android:textStyle="bold">
     </TextView>
+
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="92dp">
         <TextView
+            android:textColor="@color/darker_white"
             android:textSize="16sp"
             android:id="@+id/reviewcontent"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp">
         </TextView>
+
+        </ScrollView>
         <TextView
+            android:layout_marginTop="5dp"
+            android:text="Expand Review"
+            android:textColor="@color/dark_grey"
+            android:background="@color/playbuttongreen"
             android:textSize="16sp"
-            android:id="@+id/reviewrating"
+            android:id="@+id/expandreview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:padding="12dp"
+            android:textStyle="bold">
         </TextView>
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
-</LinearLayout>
+
+
+</RelativeLayout>
