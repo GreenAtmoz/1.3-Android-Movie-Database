@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,11 +36,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/roundedbackground"
-                android:layout_marginLeft="18dp"
+                android:layout_marginLeft="14dp"
                 android:layout_marginTop="23dp"
                 android:paddingBottom="5dp">
 
                 <TextView
+                    android:layout_marginLeft="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Your review:"
@@ -61,6 +63,7 @@
                         android:orientation="horizontal">
 
                         <Button
+                            android:layout_marginLeft="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="21dp"
                             android:paddingLeft="5dp"
@@ -90,6 +93,7 @@
                     </LinearLayout>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:paddingTop="10dp"
             android:id="@+id/reviewrecyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -97,4 +101,54 @@
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+
+            android:id="@+id/reviewScrollview"
+            android:background="@color/darker_grey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/backbutton"
+                    android:layout_width="51dp"
+                    android:layout_height="52dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/fullnamereview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:textColor="@color/playbuttongreen"
+                    android:textSize="20sp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/contentreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:textColor="@color/darker_white"
+                    android:textSize="16sp">
+
+                </TextView>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
