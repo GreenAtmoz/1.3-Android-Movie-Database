@@ -106,6 +106,7 @@
             app:srcCompat="@drawable/mg" />
 
         <EditText
+            android:inputType="text"
             android:id="@+id/EditText"
             android:paddingStart="8dp"
             android:paddingRight="8dp"
