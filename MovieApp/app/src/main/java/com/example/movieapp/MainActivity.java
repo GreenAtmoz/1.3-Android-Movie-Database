@@ -1,10 +1,12 @@
 package com.example.movieapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
+import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,10 +29,11 @@ import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
 import com.example.movieapp.Domain.Language;
 import com.example.movieapp.Domain.MovieElements;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public ImageView imageView2;
-    public Button all;
+    public Button popular;
     public Button date;
     public Button rating;
     public Button expected;
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     private TextView night;
     private TextView dutch;
     private TextView english;
+    private Button buttonClicked;
 
     private LinearLayout settingstab;
 
@@ -55,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         setContentView(R.layout.activity_main);
 
         hideNavigationBar();
-
+        buttonClicked = popular;
 
 
         day = (TextView) findViewById(R.id.day);
@@ -78,11 +82,20 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         });
         dutch = (TextView) findViewById(R.id.dutch);
         dutch.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View v) {
                 dutch.setTextColor(getResources().getColor(R.color.playbuttongreen));
                 english.setTextColor(getResources().getColor(R.color.darker_white));
                 //TODO RIK ZET HIER NEDERLANDSE TAAL CODE
+                NetworkUtils.language = Language.NEDERLANDS;
+                buttonClicked.performClick();
+                Configuration mainConfig = new Configuration(getResources().getConfiguration());
+                String languageToLoad = "nl";
+                Locale locale = new Locale(languageToLoad);
+                Locale.setDefault(locale);
+                mainConfig.setLocale(locale);
+                getResources().updateConfiguration(mainConfig, null);
             }
         });
         english = (TextView) findViewById(R.id.english);
@@ -92,6 +105,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 dutch.setTextColor(getResources().getColor(R.color.darker_white));
                 english.setTextColor(getResources().getColor(R.color.playbuttongreen));
                 //TODO RIK ZET HIER ENGELSE TAAL CODE
+                NetworkUtils.language = Language.ENGLISH;
+                buttonClicked.performClick();
+                Configuration mainConfig = new Configuration(getResources().getConfiguration());
+                String languageToLoad = "en";
+                Locale locale = new Locale(languageToLoad);
+                Locale.setDefault(locale);
+                mainConfig.setLocale(locale);
+                getResources().updateConfiguration(mainConfig, null);
             }
         });
 
@@ -150,12 +171,13 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         popularDataProcessing.asyncResponse = MainActivity.this;
         popularDataProcessing.execute();
 
-        all = (Button) findViewById(R.id.POPULAR);
-        all.setTextColor(orange);
-        all.setOnClickListener(new View.OnClickListener() {
+        popular = (Button) findViewById(R.id.POPULAR);
+        popular.setTextColor(orange);
+        popular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(orange);
+                buttonClicked = popular;
+                popular.setTextColor(orange);
                 date.setTextColor(white);
                 rating.setTextColor(white);
                 expected.setTextColor(white);
@@ -168,11 +190,13 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             }
         });
 
+
         date = (Button) findViewById(R.id.date);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(white);
+                buttonClicked = date;
+                popular.setTextColor(white);
                 date.setTextColor(orange);
                 rating.setTextColor(white);
                 expected.setTextColor(white);
@@ -189,7 +213,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         rating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(white);
+                buttonClicked = rating;
+                popular.setTextColor(white);
                 date.setTextColor(white);
                 rating.setTextColor(orange);
                 expected.setTextColor(white);
@@ -206,7 +231,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         expected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(white);
+                buttonClicked = expected;
+                popular.setTextColor(white);
                 date.setTextColor(white);
                 rating.setTextColor(white);
                 expected.setTextColor(orange);
