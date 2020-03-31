@@ -4,8 +4,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +27,6 @@ import com.example.movieapp.DataStorrage.NetworkConnection.NetworkUtils;
 import com.example.movieapp.Domain.Language;
 import com.example.movieapp.Domain.MovieElements;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public ImageView imageView2;
@@ -42,13 +39,11 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     private int white;
     private int orange;
     private ImageView settingsmenu;
-
     private TextView day;
     private TextView night;
     private TextView dutch;
     private TextView english;
     private Button buttonClicked;
-
     private LinearLayout settingstab;
 
 
@@ -59,8 +54,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         setContentView(R.layout.activity_main);
 
         hideNavigationBar();
-        buttonClicked = popular;
-
 
         day = (TextView) findViewById(R.id.day);
         day.setOnClickListener(new View.OnClickListener() {
@@ -90,16 +83,17 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 //TODO RIK ZET HIER NEDERLANDSE TAAL CODE
                 NetworkUtils.language = Language.NEDERLANDS;
                 buttonClicked.performClick();
-                Configuration mainConfig = new Configuration(getResources().getConfiguration());
-                String languageToLoad = "nl";
-                Locale locale = new Locale(languageToLoad);
-                Locale.setDefault(locale);
-                mainConfig.setLocale(locale);
-                getResources().updateConfiguration(mainConfig, null);
+//                Configuration mainConfig = new Configuration(getResources().getConfiguration());
+//                String languageToLoad = "nl";
+//                Locale locale = new Locale(languageToLoad);
+//                Locale.setDefault(locale);
+//                mainConfig.setLocale(locale);
+//                getResources().updateConfiguration(mainConfig, null);
             }
         });
         english = (TextView) findViewById(R.id.english);
         english.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View v) {
                 dutch.setTextColor(getResources().getColor(R.color.darker_white));
@@ -107,12 +101,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 //TODO RIK ZET HIER ENGELSE TAAL CODE
                 NetworkUtils.language = Language.ENGLISH;
                 buttonClicked.performClick();
-                Configuration mainConfig = new Configuration(getResources().getConfiguration());
-                String languageToLoad = "en";
-                Locale locale = new Locale(languageToLoad);
-                Locale.setDefault(locale);
-                mainConfig.setLocale(locale);
-                getResources().updateConfiguration(mainConfig, null);
+//                Configuration mainConfig = new Configuration(getResources().getConfiguration());
+//                String languageToLoad = "en";
+//                Locale locale = new Locale(languageToLoad);
+//                Locale.setDefault(locale);
+//                mainConfig.setLocale(locale);
+//                getResources().updateConfiguration(mainConfig, null);
             }
         });
 
@@ -189,6 +183,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 popularDataProcessing.execute();
             }
         });
+
+        buttonClicked = popular;
 
 
         date = (Button) findViewById(R.id.date);
