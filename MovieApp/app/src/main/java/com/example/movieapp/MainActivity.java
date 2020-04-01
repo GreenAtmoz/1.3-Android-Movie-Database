@@ -4,6 +4,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.DataProcessing.AsyncResponse;
 import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
@@ -36,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public Button expected;
     public EditText EditText;
     private ArrayList<MovieElements> movieElements;
-    private int white;
+    private int buttonColorOffState;
     private int orange;
     private ImageView settingsmenu;
     private TextView day;
@@ -53,14 +57,18 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        hideNavigationBar();
-
         day = (TextView) findViewById(R.id.day);
         day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 day.setTextColor(getResources().getColor(R.color.playbuttongreen));
                 night.setTextColor(getResources().getColor(R.color.darker_white));
+
+                Context context = getApplicationContext();
+                CharSequence text = "ColorScheme changed to: DayMode";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 //TODO RIK ZET HIER DAYMODE CODE
             }
         });
@@ -70,6 +78,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             public void onClick(View v) {
                 day.setTextColor(getResources().getColor(R.color.darker_white));
                 night.setTextColor(getResources().getColor(R.color.playbuttongreen));
+
+                Context context = getApplicationContext();
+                CharSequence text = "ColorScheme changed to: NightMode";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 //TODO RIK ZET HIER NIGHTMODE CODE
             }
         });
@@ -83,6 +97,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 //TODO RIK ZET HIER NEDERLANDSE TAAL CODE
                 NetworkUtils.language = Language.NEDERLANDS;
                 buttonClicked.performClick();
+
+                Context context = getApplicationContext();
+                CharSequence text = "Language changed to: Nederlands";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
 //                Configuration mainConfig = new Configuration(getResources().getConfiguration());
 //                String languageToLoad = "nl";
 //                Locale locale = new Locale(languageToLoad);
@@ -101,6 +121,12 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 //TODO RIK ZET HIER ENGELSE TAAL CODE
                 NetworkUtils.language = Language.ENGLISH;
                 buttonClicked.performClick();
+
+                Context context = getApplicationContext();
+                CharSequence text = "Language changed to: English";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
 //                Configuration mainConfig = new Configuration(getResources().getConfiguration());
 //                String languageToLoad = "en";
 //                Locale locale = new Locale(languageToLoad);
@@ -156,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             }
         });
 
-        white = getResources().getColor(R.color.white);
+        buttonColorOffState = getResources().getColor(R.color.white);
         orange = getResources().getColor(R.color.orange);
         NetworkUtils.language = Language.ENGLISH;
 
@@ -172,9 +198,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             public void onClick(View v) {
                 buttonClicked = popular;
                 popular.setTextColor(orange);
-                date.setTextColor(white);
-                rating.setTextColor(white);
-                expected.setTextColor(white);
+                date.setTextColor(buttonColorOffState);
+                rating.setTextColor(buttonColorOffState);
+                expected.setTextColor(buttonColorOffState);
 
                 movieElements = new ArrayList<>();
                 PopularDataProcessing popularDataProcessing = null;
@@ -192,10 +218,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             @Override
             public void onClick(View v) {
                 buttonClicked = date;
-                popular.setTextColor(white);
+                popular.setTextColor(buttonColorOffState);
                 date.setTextColor(orange);
-                rating.setTextColor(white);
-                expected.setTextColor(white);
+                rating.setTextColor(buttonColorOffState);
+                expected.setTextColor(buttonColorOffState);
 
                 movieElements = new ArrayList<>();
                 DateDataProcessing dateDataProcessing = null;
@@ -210,10 +236,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             @Override
             public void onClick(View v) {
                 buttonClicked = rating;
-                popular.setTextColor(white);
-                date.setTextColor(white);
+                popular.setTextColor(buttonColorOffState);
+                date.setTextColor(buttonColorOffState);
                 rating.setTextColor(orange);
-                expected.setTextColor(white);
+                expected.setTextColor(buttonColorOffState);
 
                 movieElements = new ArrayList<>();
                 RatingDataProcessing ratingDataProcessing = null;
@@ -228,9 +254,9 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             @Override
             public void onClick(View v) {
                 buttonClicked = expected;
-                popular.setTextColor(white);
-                date.setTextColor(white);
-                rating.setTextColor(white);
+                popular.setTextColor(buttonColorOffState);
+                date.setTextColor(buttonColorOffState);
+                rating.setTextColor(buttonColorOffState);
                 expected.setTextColor(orange);
 
                 movieElements = new ArrayList<>();
@@ -240,24 +266,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 expectedDataProcessing.execute();
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        hideNavigationBar();
-    }
-
-    private void hideNavigationBar() {
-        this.getWindow()
-                .getDecorView()
-                .setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
 
     @Override
