@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movie App</string>
+    <string name="app_name">The Movie Database</string>
     <string name="date">DATE</string>
     <string name="rating">Rating</string>
     <string name="expected">Expected</string>
@@ -7,7 +7,7 @@
     <string name="_2020" translatable="false">dingetje</string>
     <string name="hele_hoop_text" translatable="false">zooi tyuguyguykfuyfuyfkufukyfyfy</string>
     <string name="enter_movie">Enter Movie</string>
-    <string name="write_review">SHOW REVIEW</string>
+    <string name="write_review">SHOW REVIEWS</string>
     <string name="reviews">REVIEWS</string>
     <string name="submit_review">Submit review</string>
     <string name="ReviewRating">Rating ★</string>

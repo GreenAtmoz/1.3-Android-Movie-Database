@@ -1,10 +1,12 @@
 package com.example.movieapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -15,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.movieapp.AppLogic.RecyclerViewAdapter;
 import com.example.movieapp.DataStorrage.DataProcessing.AsyncResponse;
 import com.example.movieapp.DataStorrage.DataProcessing.DateDataProcessing;
@@ -30,21 +34,20 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AsyncResponse {
     public ImageView imageView2;
-    public Button all;
+    public Button popular;
     public Button date;
     public Button rating;
     public Button expected;
     public EditText EditText;
     private ArrayList<MovieElements> movieElements;
-    private int white;
+    private int buttonColorOffState;
     private int orange;
     private ImageView settingsmenu;
-
     private TextView day;
     private TextView night;
     private TextView dutch;
     private TextView english;
-
+    private Button buttonClicked;
     private LinearLayout settingstab;
 
 
@@ -54,16 +57,18 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        hideNavigationBar();
-
-
-
         day = (TextView) findViewById(R.id.day);
         day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 day.setTextColor(getResources().getColor(R.color.playbuttongreen));
                 night.setTextColor(getResources().getColor(R.color.darker_white));
+
+                Context context = getApplicationContext();
+                CharSequence text = "ColorScheme changed to: DayMode";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 //TODO RIK ZET HIER DAYMODE CODE
             }
         });
@@ -73,25 +78,61 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             public void onClick(View v) {
                 day.setTextColor(getResources().getColor(R.color.darker_white));
                 night.setTextColor(getResources().getColor(R.color.playbuttongreen));
+
+                Context context = getApplicationContext();
+                CharSequence text = "ColorScheme changed to: NightMode";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
                 //TODO RIK ZET HIER NIGHTMODE CODE
             }
         });
         dutch = (TextView) findViewById(R.id.dutch);
         dutch.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View v) {
                 dutch.setTextColor(getResources().getColor(R.color.playbuttongreen));
                 english.setTextColor(getResources().getColor(R.color.darker_white));
                 //TODO RIK ZET HIER NEDERLANDSE TAAL CODE
+                NetworkUtils.language = Language.NEDERLANDS;
+                buttonClicked.performClick();
+
+                Context context = getApplicationContext();
+                CharSequence text = "Language changed to: Nederlands";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+//                Configuration mainConfig = new Configuration(getResources().getConfiguration());
+//                String languageToLoad = "nl";
+//                Locale locale = new Locale(languageToLoad);
+//                Locale.setDefault(locale);
+//                mainConfig.setLocale(locale);
+//                getResources().updateConfiguration(mainConfig, null);
             }
         });
         english = (TextView) findViewById(R.id.english);
         english.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View v) {
                 dutch.setTextColor(getResources().getColor(R.color.darker_white));
                 english.setTextColor(getResources().getColor(R.color.playbuttongreen));
                 //TODO RIK ZET HIER ENGELSE TAAL CODE
+                NetworkUtils.language = Language.ENGLISH;
+                buttonClicked.performClick();
+
+                Context context = getApplicationContext();
+                CharSequence text = "Language changed to: English";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+//                Configuration mainConfig = new Configuration(getResources().getConfiguration());
+//                String languageToLoad = "en";
+//                Locale locale = new Locale(languageToLoad);
+//                Locale.setDefault(locale);
+//                mainConfig.setLocale(locale);
+//                getResources().updateConfiguration(mainConfig, null);
             }
         });
 
@@ -141,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             }
         });
 
-        white = getResources().getColor(R.color.white);
+        buttonColorOffState = getResources().getColor(R.color.white);
         orange = getResources().getColor(R.color.orange);
         NetworkUtils.language = Language.ENGLISH;
 
@@ -150,15 +191,16 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         popularDataProcessing.asyncResponse = MainActivity.this;
         popularDataProcessing.execute();
 
-        all = (Button) findViewById(R.id.POPULAR);
-        all.setTextColor(orange);
-        all.setOnClickListener(new View.OnClickListener() {
+        popular = (Button) findViewById(R.id.POPULAR);
+        popular.setTextColor(orange);
+        popular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(orange);
-                date.setTextColor(white);
-                rating.setTextColor(white);
-                expected.setTextColor(white);
+                buttonClicked = popular;
+                popular.setTextColor(orange);
+                date.setTextColor(buttonColorOffState);
+                rating.setTextColor(buttonColorOffState);
+                expected.setTextColor(buttonColorOffState);
 
                 movieElements = new ArrayList<>();
                 PopularDataProcessing popularDataProcessing = null;
@@ -168,14 +210,18 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             }
         });
 
+        buttonClicked = popular;
+
+
         date = (Button) findViewById(R.id.date);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(white);
+                buttonClicked = date;
+                popular.setTextColor(buttonColorOffState);
                 date.setTextColor(orange);
-                rating.setTextColor(white);
-                expected.setTextColor(white);
+                rating.setTextColor(buttonColorOffState);
+                expected.setTextColor(buttonColorOffState);
 
                 movieElements = new ArrayList<>();
                 DateDataProcessing dateDataProcessing = null;
@@ -189,10 +235,11 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         rating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(white);
-                date.setTextColor(white);
+                buttonClicked = rating;
+                popular.setTextColor(buttonColorOffState);
+                date.setTextColor(buttonColorOffState);
                 rating.setTextColor(orange);
-                expected.setTextColor(white);
+                expected.setTextColor(buttonColorOffState);
 
                 movieElements = new ArrayList<>();
                 RatingDataProcessing ratingDataProcessing = null;
@@ -206,9 +253,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         expected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                all.setTextColor(white);
-                date.setTextColor(white);
-                rating.setTextColor(white);
+                buttonClicked = expected;
+                popular.setTextColor(buttonColorOffState);
+                date.setTextColor(buttonColorOffState);
+                rating.setTextColor(buttonColorOffState);
                 expected.setTextColor(orange);
 
                 movieElements = new ArrayList<>();
@@ -218,24 +266,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                 expectedDataProcessing.execute();
             }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        hideNavigationBar();
-    }
-
-    private void hideNavigationBar() {
-        this.getWindow()
-                .getDecorView()
-                .setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-                        View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     }
 
     @Override
