@@ -10,5 +10,12 @@
     <string name="enter_movie">Voer film in</string>
     <string name="reviews">Beoordelingen</string>
     <string name="submit_review">Verstuur beoordeling</string>
-    <string name="_0_0">0.0</string>
+    <string name="language">Land:</string>
+    <string name="night">Nacht</string>
+    <string name="day">Dag</string>
+    <string name="theme">Thema:</string>
+    <string name="english">Verenigde Staten</string>
+    <string name="dutch">Nederlands</string>
+    <string name="languageChangedNL">Land veranderd naar Nederland</string>
+    <string name="languageChangedEN">Land veranderd naar Verenigde Staten</string>
 </resources>

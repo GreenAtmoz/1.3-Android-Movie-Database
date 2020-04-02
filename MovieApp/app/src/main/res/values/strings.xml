@@ -11,12 +11,14 @@
     <string name="reviews">REVIEWS</string>
     <string name="submit_review">Submit review</string>
     <string name="ReviewRating">Rating ★</string>
-    <string name="_0_0">0.0</string>
-    <string name="language">Language:</string>
+    <string name="_0_0" translatable="false">0.0</string>
+    <string name="language">Country:</string>
     <string name="night">Night</string>
-    <string name="dash">/</string>
-    <string name="english">English</string>
-    <string name="dutch">Dutch</string>
+    <string name="dash" translatable="false">/</string>
+    <string name="english">United States</string>
+    <string name="dutch">Netherlands</string>
     <string name="day">Day</string>
     <string name="theme">Theme:</string>
+    <string name="languageChangedNL">Country changed to the Netherlands</string>
+    <string name="languageChangedEN">Country changed to the United States</string>
 </resources>
