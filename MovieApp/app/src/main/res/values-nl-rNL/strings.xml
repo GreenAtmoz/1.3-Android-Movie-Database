@@ -4,10 +4,9 @@
     <string name="rating">BEOORDELING</string>
     <string name="expected">VERWACHT</string>
     <string name="all">POPULAIR</string>
-    <string name="app_name">Film Applicatie</string>
     <string name="write_review">TOON BEOORDELINGEN</string>
     <string name="ReviewRating">Beoordeling ★</string>
-    <string name="enter_movie">Voer film in</string>
+    <string name="enter_movie">Zoek film</string>
     <string name="reviews">Beoordelingen</string>
     <string name="submit_review">Verstuur beoordeling</string>
     <string name="language">Land:</string>

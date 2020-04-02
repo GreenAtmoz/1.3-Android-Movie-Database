@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">The Movie Database</string>
+    <string name="app_name" translatable="false">The Movie Database</string>
     <string name="date">DATE</string>
     <string name="rating">Rating</string>
     <string name="expected">Expected</string>
