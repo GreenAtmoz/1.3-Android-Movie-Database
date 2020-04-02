@@ -43,12 +43,11 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     private int buttonColorOffState;
     private int orange;
     private ImageView settingsmenu;
-    private TextView day;
-    private TextView night;
     private TextView dutch;
     private TextView english;
     private Button buttonClicked;
     private LinearLayout settingstab;
+    private ImageView loop;
 
 
     @Override
@@ -57,36 +56,6 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        day = (TextView) findViewById(R.id.day);
-        day.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                day.setTextColor(getResources().getColor(R.color.playbuttongreen));
-                night.setTextColor(getResources().getColor(R.color.darker_white));
-
-                Context context = getApplicationContext();
-                CharSequence text = "ColorScheme changed to: DayMode";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-                //TODO RIK ZET HIER DAYMODE CODE
-            }
-        });
-        night = (TextView) findViewById(R.id.night);
-        night.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                day.setTextColor(getResources().getColor(R.color.darker_white));
-                night.setTextColor(getResources().getColor(R.color.playbuttongreen));
-
-                Context context = getApplicationContext();
-                CharSequence text = "ColorScheme changed to: NightMode";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-                //TODO RIK ZET HIER NIGHTMODE CODE
-            }
-        });
         dutch = (TextView) findViewById(R.id.dutch);
         dutch.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -94,21 +63,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             public void onClick(View v) {
                 dutch.setTextColor(getResources().getColor(R.color.playbuttongreen));
                 english.setTextColor(getResources().getColor(R.color.darker_white));
-                //TODO RIK ZET HIER NEDERLANDSE TAAL CODE
                 NetworkUtils.language = Language.NEDERLANDS;
                 buttonClicked.performClick();
 
                 Context context = getApplicationContext();
-                CharSequence text = "Language changed to: Nederlands";
+                CharSequence text = getString(R.string.languageChangedNL);
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-//                Configuration mainConfig = new Configuration(getResources().getConfiguration());
-//                String languageToLoad = "nl";
-//                Locale locale = new Locale(languageToLoad);
-//                Locale.setDefault(locale);
-//                mainConfig.setLocale(locale);
-//                getResources().updateConfiguration(mainConfig, null);
             }
         });
         english = (TextView) findViewById(R.id.english);
@@ -118,21 +80,14 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             public void onClick(View v) {
                 dutch.setTextColor(getResources().getColor(R.color.darker_white));
                 english.setTextColor(getResources().getColor(R.color.playbuttongreen));
-                //TODO RIK ZET HIER ENGELSE TAAL CODE
                 NetworkUtils.language = Language.ENGLISH;
                 buttonClicked.performClick();
 
                 Context context = getApplicationContext();
-                CharSequence text = "Language changed to: English";
+                CharSequence text = getString(R.string.languageChangedEN);
                 int duration = Toast.LENGTH_SHORT;
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-//                Configuration mainConfig = new Configuration(getResources().getConfiguration());
-//                String languageToLoad = "en";
-//                Locale locale = new Locale(languageToLoad);
-//                Locale.setDefault(locale);
-//                mainConfig.setLocale(locale);
-//                getResources().updateConfiguration(mainConfig, null);
             }
         });
 
@@ -174,6 +129,18 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
                     }
                 }
         );
+
+        loop = (ImageView) findViewById(R.id.loop);
+        loop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                movieElements = new ArrayList<>();
+                SearchDataProcessing searchDataProcessing = new SearchDataProcessing(movieElements, String.valueOf(EditText.getText()) );
+                searchDataProcessing.asyncResponse = MainActivity.this;
+                searchDataProcessing.execute();
+            }
+        });
+
         EditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,6 +148,8 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
             }
         });
+
+
 
         buttonColorOffState = getResources().getColor(R.color.white);
         orange = getResources().getColor(R.color.orange);
