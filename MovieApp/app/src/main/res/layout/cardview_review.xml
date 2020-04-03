@@ -45,7 +45,7 @@
         </ScrollView>
         <TextView
             android:layout_marginTop="5dp"
-            android:text="Expand Review"
+            android:text="@string/expand_review"
             android:textColor="@color/dark_grey"
             android:background="@color/playbuttongreen"
             android:textSize="16sp"

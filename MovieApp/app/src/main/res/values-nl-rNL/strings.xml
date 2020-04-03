@@ -17,4 +17,5 @@
     <string name="dutch">Nederlands</string>
     <string name="languageChangedNL">Land veranderd naar Nederland</string>
     <string name="languageChangedEN">Land veranderd naar Verenigde Staten</string>
+    <string name="expand_review">Review uitvouwen</string>
 </resources>
