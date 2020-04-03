@@ -44,7 +44,7 @@
                     android:layout_marginLeft="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your review:"
+                    android:text="@string/your_review"
                     android:textColor="@color/playbuttongreen"
                     android:textSize="20sp">
                 </TextView>
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:hint="click to type"
+                    android:hint="@string/click_to_type"
                     android:textColorHint="@color/darker_white">
                 </EditText>
 

@@ -22,4 +22,6 @@
     <string name="languageChangedNL">Country changed to the Netherlands</string>
     <string name="languageChangedEN">Country changed to the United States</string>
     <string name="expand_review">Expand Review</string>
+    <string name="click_to_type">click to type</string>
+    <string name="your_review">Your review:</string>
 </resources>

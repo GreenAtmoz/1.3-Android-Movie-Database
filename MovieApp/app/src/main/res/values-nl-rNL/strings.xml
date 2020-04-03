@@ -4,7 +4,7 @@
     <string name="rating">BEOORDELING</string>
     <string name="expected">VERWACHT</string>
     <string name="all">POPULAIR</string>
-    <string name="write_review">TOON BEOORDELINGEN</string>
+    <string name="write_review">BEOORDELINGEN</string>
     <string name="ReviewRating">Beoordeling ★</string>
     <string name="enter_movie">Zoek film</string>
     <string name="reviews">Beoordelingen</string>
@@ -18,4 +18,6 @@
     <string name="languageChangedNL">Land veranderd naar Nederland</string>
     <string name="languageChangedEN">Land veranderd naar Verenigde Staten</string>
     <string name="expand_review">Review uitvouwen</string>
+    <string name="click_to_type">Klik om te typen</string>
+    <string name="your_review">Jouw beoordeling</string>
 </resources>
